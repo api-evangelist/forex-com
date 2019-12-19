@@ -1,0 +1,60 @@
+{
+    "name": "FOREX.com",
+    "description": "FOREX.com offers forex & metals trading with award winning trading platforms, tight spreads, quality executions, powerful trading tools & 24-hour live support",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/792-forex-com.jpg",
+    "tags": [
+        "api provider",
+        "financial",
+        "financial data",
+        "have api",
+        "marketplaces",
+        "stocks"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/forex-com\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "FOREX.com",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/792-forex-com.jpg",
+            "humanURL": "http:\/\/www.easy-forex.com\/int\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/forex-com-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/forex-com"
+        },
+        {
+            "type": "Email",
+            "url": "info@forex.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/Forex"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/forexcom"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.forex.com\/forex-api.html"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.easy-forex.com\/int\/"
+        }
+    ]
+}
