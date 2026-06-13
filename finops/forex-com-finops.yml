@@ -1,0 +1,114 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: FOREX.com
+providerId: forex-com
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Forex
+  - CFD Trading
+  - Trading
+description: >-
+  FOCUS-aligned FinOps for FOREX.com APIs. There is no API subscription fee; all trading
+  costs arise through bid/ask spreads on executed trades and, for RAW Pricing accounts,
+  a per-trade commission of $7 USD per $100,000 USD notional. Overnight financing charges
+  (swap rates) apply to positions held past the daily 5 PM ET cutoff. Cost visibility
+  is achieved through the FOREX.com account statement and the Account/Position APIs.
+sources:
+  - https://www.forex.com/en-us/trading-accounts/spread-only-account/
+  - https://www.forex.com/en-us/trading-accounts/raw-pricing-account/
+  - https://www.forex.com/en-us/about-us/financial-transparency/trading-costs/
+  - https://www.forex.com/en/trading-tools/api-trading/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: StoneX Group Inc. (FOREX.com)
+serviceCategory: Financial Services
+billingModel:
+  pricingCategory: Spread/Commission
+  billingFrequency: Trade Settlement (Spread-Only); Per-Trade Commission (RAW Pricing)
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Financing
+focusColumns:
+  ServiceName: FOREX.com
+  ServiceCategory: Financial Services
+  ProviderName: FOREX.com
+  PublisherName: StoneX Group Inc.
+  InvoiceIssuerName: StoneX Group Inc.
+  BillingCurrency: USD
+meters:
+  - name: forex_trades_spread_only
+    unit: trade
+    aggregation: count
+    dimensions:
+      - instrument
+      - direction
+      - quantity
+    description: >-
+      Number of executed forex or CFD trades on a Spread-Only account. Cost is embedded
+      in the bid/ask spread; no explicit per-trade fee is charged.
+  - name: forex_trades_raw_pricing
+    unit: trade
+    aggregation: count
+    dimensions:
+      - instrument
+      - direction
+      - notional_usd
+    description: >-
+      Number of executed forex or CFD trades on a RAW Pricing account. Commission of
+      $7 USD is charged per $100,000 USD notional traded in addition to the tighter spread.
+  - name: trade_volume_notional
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - instrument
+      - account_type
+      - direction
+    description: >-
+      Total notional value of executed trades in USD. Used to calculate RAW Pricing
+      commissions ($7 per $100k notional) and to analyse spread cost as a proportion
+      of volume.
+  - name: financing_charges
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - instrument
+      - direction
+      - position_size
+    description: >-
+      Overnight swap/financing charges on positions held past the daily 5 PM ET rollover.
+      Rates vary by instrument and direction; FOREX.com publishes current swap rates on
+      each instrument's detail page.
+principles:
+  - name: Visibility
+    description: >-
+      Monitor realised P&L, spread costs, commissions, and financing charges via the
+      FOREX.com account statement and the /useraccount and position REST API endpoints.
+      Export trade history regularly for cost attribution and reporting.
+  - name: Allocation
+    description: >-
+      Segment costs by trading strategy, instrument group, and direction (Buy/Sell)
+      using trade history data from the REST API. For multi-strategy operations, maintain
+      separate FOREX.com sub-accounts to isolate cost centres.
+  - name: Optimization
+    description: >-
+      Trade during high-liquidity sessions (London and New York overlap) to minimise
+      effective spread cost. For high-volume algorithmic strategies, evaluate switching
+      to the RAW Pricing account where commissions plus tight spreads may reduce total
+      cost versus Spread-Only. Reduce overnight financing exposure by closing positions
+      before the 5 PM ET daily cutoff where strategy permits.
+  - name: Accountability
+    description: >-
+      Reconcile monthly FOREX.com account statements against internal trade logs. Track
+      cumulative commission spend on RAW Pricing accounts and model break-even volume
+      versus Spread-Only to validate account type selection at each strategy review cycle.

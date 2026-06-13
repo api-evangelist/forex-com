@@ -1,0 +1,169 @@
+aid: forex-com
+url: https://raw.githubusercontent.com/api-evangelist/forex-com/main/apis.yml
+apis:
+  - aid: forex-com:forex-com-session-api
+    name: FOREX.com Session API
+    tags:
+      - Authentication
+      - Session Management
+      - Forex
+      - Trading
+    properties:
+      - url: https://www.forex.com/en/trading-tools/api-trading/
+        type: Documentation
+    description: >-
+      Authenticate and manage API sessions for the FOREX.com trading platform. A POST
+      request to the session endpoint with username, password, and AppKey returns a
+      session ID used as a header credential for all subsequent REST API requests.
+  - aid: forex-com:forex-com-account-api
+    name: FOREX.com Account API
+    tags:
+      - Accounts
+      - Forex
+      - Trading
+    properties:
+      - url: https://www.forex.com/en/trading-tools/api-trading/
+        type: Documentation
+    description: >-
+      Retrieve client and trading account details including account IDs, balance,
+      available margin, and personal account information. The /useraccount/ClientAndTradingAccount
+      endpoint returns the Trading Account ID required for all order and position operations.
+  - aid: forex-com:forex-com-market-api
+    name: FOREX.com Market API
+    tags:
+      - Markets
+      - Forex
+      - Currency Pairs
+      - Instruments
+    properties:
+      - url: https://www.forex.com/en/trading-tools/api-trading/
+        type: Documentation
+    description: >-
+      Search and retrieve market details for tradeable instruments across 80+ forex and
+      CFD markets. Supports full market search by name or tag to resolve Market IDs used
+      in order placement and price subscription requests.
+  - aid: forex-com:forex-com-pricing-api
+    name: FOREX.com Pricing API
+    tags:
+      - Pricing
+      - Forex
+      - Real-Time Rates
+      - Streaming
+      - Historical Data
+    properties:
+      - url: https://www.forex.com/en/trading-tools/api-trading/
+        type: Documentation
+    description: >-
+      Access real-time and historical price data for forex and CFD markets. Real-time
+      bid/ask/offer prices are delivered via Lightstreamer streaming subscriptions using
+      MERGE mode. Historical OHLC price data supports up to 4,000 records per request
+      with configurable date range, count, and price type (ask/bid/mid).
+  - aid: forex-com:forex-com-order-api
+    name: FOREX.com Order API
+    tags:
+      - Orders
+      - Forex
+      - Trading
+      - Execution
+    properties:
+      - url: https://www.forex.com/en/trading-tools/api-trading/
+        type: Documentation
+    description: >-
+      Place and manage trade orders on the FOREX.com platform against live streaming
+      prices. Supports market price orders with configurable direction (Buy/Sell), quantity,
+      stop-loss, take-profit, and price tolerance. Order status updates are delivered via
+      streaming subscription.
+  - aid: forex-com:forex-com-position-api
+    name: FOREX.com Position API
+    tags:
+      - Positions
+      - Forex
+      - Trading
+    properties:
+      - url: https://www.forex.com/en/trading-tools/api-trading/
+        type: Documentation
+    description: >-
+      List and manage open trading positions on the FOREX.com platform. Retrieve active
+      positions including unrealised P&L, direction, quantity, and pricing details for
+      all open trades in a trading account.
+name: FOREX.com
+tags:
+  - Forex
+  - FX Trading
+  - CFD Trading
+  - Algorithmic Trading
+  - Financial Services
+  - Trading APIs
+  - Currency Exchange
+kind: contract
+access: 3rd-Party
+common:
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Portal
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Documentation
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: GettingStarted
+  - url: https://ciapi.cityindex.com/TradingAPI/
+    type: BaseURL
+  - url: https://github.com/ali-zahedi/forexcom
+    type: PythonSDK
+  - url: https://github.com/rickykim93/gcapi-python
+    type: PythonSDK
+  - url: https://www.forex.com/en-us/trading-accounts/spread-only-account/
+    type: Pricing
+  - url: https://www.forex.com/en-us/trading-accounts/raw-pricing-account/
+    type: Pricing
+  - url: https://www.forex.com/en-us/help-and-support/pricing-and-fees/
+    type: TermsOfService
+  - url: https://www.forex.com/
+    type: Website
+  - url: https://www.forex.com/en-us/trading-accounts/new-trading-account/
+    type: SignUp
+  - url: https://www.forex.com/en/help-and-support/
+    type: Support
+  - type: Features
+    data:
+      - REST API using JSON over HTTP at base URL https://ciapi.cityindex.com/TradingAPI/
+      - Header-based authentication with UserName and Session ID obtained from /session endpoint
+      - AppKey required — obtained by contacting support.en@forex.com (3 business day activation)
+      - Real-time bid/ask/offer pricing via Lightstreamer streaming (STREAMINGALL adapter, MERGE mode)
+      - Historical OHLC price data up to 4,000 records per request with date range and price type options
+      - Order execution for Buy/Sell with stop-loss, take-profit, and price tolerance slippage control
+      - Order status streaming subscription for real-time execution updates
+      - Account balance, available margin, open positions, and historical trade access
+      - 80+ forex and CFD markets supported including all major and minor currency pairs
+      - FIX API available for institutional clients requiring lower latency and local liquidity sourcing
+      - FIX API liquidity sourced locally in London, Tokyo, and New York for reduced latency
+      - Compatible with Spread-Only and RAW Pricing account types
+      - RAW Pricing accounts: spreads from 0.2 pips on EUR/USD with $7 USD commission per $100k notional
+      - Spread-Only accounts: commission-free with wider spreads (avg 1.00 pip on EUR/USD)
+      - Minimum deposit $100; recommended $2,500 for adequate risk buffer
+      - Language-agnostic: integrations documented in Python, C++, Perl, VB.NET
+    sources:
+      - https://www.bizstream.com/blog/a-quick-and-dirty-guide-to-placing-trades-on-forex-com-via-python/
+      - https://github.com/ali-zahedi/forexcom
+      - https://github.com/rickykim93/gcapi-python
+      - https://www.forexbrokers.com/guides/best-api-brokers
+      - https://www.forex.com/en/trading-tools/api-trading/
+    updated: '2026-06-13'
+created: '2026-06-13'
+modified: '2026-06-13'
+position: Consuming
+description: >-
+  FOREX.com is a regulated forex and CFD trading broker (a brand of StoneX Group)
+  offering REST and FIX APIs for automated trading and market data access. The REST API,
+  hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate
+  sessions, retrieve real-time streaming prices via Lightstreamer, execute buy/sell orders
+  across 80+ forex and CFD markets, and manage account balances, positions, and order
+  history programmatically. A FIX API is available for institutional clients requiring
+  low-latency direct market connectivity.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+  - FN: APIs.json
+    email: info@apis.io
+  - name: FOREX.com
+    url: https://www.forex.com
+specificationVersion: '0.19'
+image: https://www.forex.com/favicon.ico

@@ -1,0 +1,84 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: FOREX.com
+providerId: forex-com
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Forex
+  - Trading
+description: >-
+  FOREX.com does not publish explicit numerical rate limit thresholds in public documentation.
+  The REST API (ciapi.cityindex.com/TradingAPI) uses session-based authentication and
+  Lightstreamer for real-time streaming. Historical price requests are capped at 4,000
+  records per call. Specific per-minute or per-second REST request rate limits should be
+  confirmed with FOREX.com API support (support.en@forex.com). FIX API message rates for
+  institutional clients are configured per-agreement.
+sources:
+  - https://www.forex.com/en/trading-tools/api-trading/
+  - https://www.bizstream.com/blog/a-quick-and-dirty-guide-to-placing-trades-on-forex-com-via-python/
+  - https://github.com/ali-zahedi/forexcom
+responseCodes:
+  throttled: 429
+limits:
+  - name: Historical price records per request
+    scope: request
+    metric: records
+    limit: 4000
+    timeFrame: request
+    description: >-
+      Maximum number of OHLC price records returned per historical price data request.
+      Use date range or count parameters to paginate large data sets.
+  - name: REST API request rate
+    scope: session
+    metric: requests
+    limit: null
+    timeFrame: second
+    description: >-
+      No publicly documented numerical per-second or per-minute REST request rate limit.
+      FOREX.com recommends contacting support.en@forex.com for specific throttle thresholds
+      applicable to a given account. Standard practice is to implement exponential backoff
+      on error responses.
+  - name: Lightstreamer streaming subscriptions
+    scope: session
+    metric: subscriptions
+    limit: null
+    timeFrame: session
+    description: >-
+      Real-time price and order updates are delivered via Lightstreamer streaming
+      subscriptions. The number of concurrent symbol subscriptions per session is not
+      publicly documented; multi-symbol concurrent subscriptions are supported.
+  - name: FIX API message rate
+    scope: session
+    metric: messages_per_second
+    limit: null
+    timeFrame: second
+    description: >-
+      FIX API message throughput is configured per institutional client agreement.
+      Contact FOREX.com institutional sales for specific rate parameters.
+policies:
+  - name: AppKey activation required
+    description: >-
+      API access requires an AppKey provisioned by FOREX.com support. Submit requests
+      to support.en@forex.com and allow approximately 3 business days for activation.
+  - name: Use Lightstreamer for real-time data
+    description: >-
+      Avoid polling REST endpoints for live prices. Subscribe to the Lightstreamer
+      STREAMINGALL adapter in MERGE mode to receive bid/ask/offer and AuditId fields
+      pushed server-side, reducing unnecessary REST load.
+  - name: Paginate historical data requests
+    description: >-
+      Historical price requests return up to 4,000 records per call. Use date range
+      (start/end) or count parameters to paginate data retrieval across multiple requests.
+  - name: Implement exponential backoff
+    description: >-
+      Implement exponential backoff with jitter when receiving error responses to avoid
+      sustained throttling and ensure orderly reconnection after streaming disconnects.
+  - name: Reuse session credentials
+    description: >-
+      Sessions are authenticated once via POST /session and the returned session ID
+      is passed in request headers. Avoid re-authenticating on every request; reuse
+      the session ID for the lifetime of an API session.

@@ -1,0 +1,103 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: FOREX.com
+providerId: forex-com
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Forex
+  - CFD Trading
+  - Trading
+  - Algorithmic Trading
+description: >-
+  FOREX.com API access is bundled with a live trading account — there is no separate
+  API subscription fee. Costs arise through trading spreads and, on RAW Pricing accounts,
+  per-trade commissions. An AppKey is required to activate API access and is provisioned
+  by contacting FOREX.com support (typically 3 business days). Both Spread-Only and RAW
+  Pricing account types are REST API compatible.
+sources:
+  - https://www.forex.com/en-us/trading-accounts/spread-only-account/
+  - https://www.forex.com/en-us/trading-accounts/raw-pricing-account/
+  - https://www.forex.com/en/trading-tools/api-trading/
+  - https://www.forexbrokers.com/guides/best-api-brokers
+plans:
+  - id: forex-com-spread-only
+    name: Spread-Only Account (API)
+    type: free
+    description: >-
+      Commission-free forex and CFD trading with costs embedded in the bid/ask spread.
+      REST API access is included; there is no per-call API fee. Average spread on EUR/USD
+      is approximately 1.00 pip. Minimum deposit $100; FOREX.com recommends $2,500.
+    entries:
+      - label: API access
+        name: api_access
+        type: free
+        metric: account
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: REST API access to all trading endpoints
+      - name: Real-time streaming prices via Lightstreamer
+      - name: Historical OHLC price data (up to 4,000 records per request)
+      - name: Order execution across 80+ forex and CFD markets
+      - name: Account, balance, margin, position, and trade history access
+      - name: No per-call API fees — costs embedded in spread
+      - name: AppKey activation required (contact support.en@forex.com)
+  - id: forex-com-raw-pricing
+    name: RAW Pricing Account (API)
+    type: usage
+    description: >-
+      Tighter raw interbank spreads starting from 0.2 pips on EUR/USD, with a commission
+      of $7 USD per $100,000 USD notional traded. REST API access is included; there is no
+      separate API subscription fee. Minimum deposit $100; FOREX.com recommends $2,500.
+    entries:
+      - label: Commission per $100k notional traded
+        name: commission_per_100k
+        type: usage
+        metric: trade
+        limit: -1
+        timeFrame: trade
+        geo: global
+        unit: 100000
+        price: '7.00'
+        userMultiplied: false
+    elements:
+      - name: REST API access to all trading endpoints
+      - name: Raw interbank spreads from 0.2 pips on EUR/USD
+      - name: $7 USD commission per $100,000 USD notional traded
+      - name: Real-time streaming prices via Lightstreamer
+      - name: Historical OHLC price data (up to 4,000 records per request)
+      - name: Order execution across 80+ forex and CFD markets
+      - name: Account, balance, margin, position, and trade history access
+      - name: AppKey activation required (contact support.en@forex.com)
+  - id: forex-com-fix-institutional
+    name: FIX API (Institutional)
+    type: negotiated
+    description: >-
+      Institutional FIX API offering lower latency by sourcing liquidity locally in London,
+      Tokyo, and New York. Pricing and terms are negotiated directly with FOREX.com's
+      institutional sales team. Designed for high-volume algorithmic traders, prime brokers,
+      and liquidity aggregators.
+    entries:
+      - label: Negotiated institutional pricing
+        name: negotiated
+        type: negotiated
+        metric: account
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: negotiated
+        userMultiplied: false
+    elements:
+      - name: FIX protocol connectivity
+      - name: Local liquidity sourcing in London, Tokyo, and New York
+      - name: Lower latency than REST API
+      - name: Direct integration with FOREX.com institutional liquidity
+      - name: Dedicated account management and technical support
