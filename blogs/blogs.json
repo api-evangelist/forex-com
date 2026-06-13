@@ -1,0 +1,14 @@
+{
+  "provider": "forex-com",
+  "url": "https://www.forex.com/en/trading-tools/api-trading/",
+  "last_fetched": "2026-06-13",
+  "posts": [
+    {
+      "title": "FOREX.com REST API: Getting Started with Algorithmic Trading",
+      "url": "https://www.forex.com/en/trading-tools/api-trading/",
+      "date": "2026-06-13",
+      "summary": "Overview of the FOREX.com REST API for automated trading, covering authentication, session management, and available endpoints for forex and CFD markets.",
+      "tags": ["Forex", "REST API", "Algorithmic Trading", "Authentication"]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "openapi": "https://openapis.org/schema/",
+    "provider": "https://schema.org/provider",
+    "api": "https://schema.org/WebAPI"
+  },
+  "@type": "WebAPI",
+  "@id": "https://github.com/api-evangelist/forex-com",
+  "name": "FOREX.com REST API",
+  "description": "FOREX.com is a regulated forex and CFD trading broker (a brand of StoneX Group) offering REST and FIX APIs for automated trading and market data access. The REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time streaming prices via Lightstreamer, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically.",
+  "url": "https://www.forex.com/en/trading-tools/api-trading/",
+  "documentation": "https://www.forex.com/en/trading-tools/api-trading/",
+  "termsOfService": "https://www.forex.com/en-us/help-and-support/pricing-and-fees/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.forex.com/favicon.ico"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "FOREX.com",
+    "url": "https://www.forex.com",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "StoneX Group"
+    }
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Spread-Only Account",
+      "url": "https://www.forex.com/en-us/trading-accounts/spread-only-account/",
+      "description": "Commission-free trading with average spreads of 1.00 pip on EUR/USD; minimum deposit $100"
+    },
+    {
+      "@type": "Offer",
+      "name": "RAW Pricing Account",
+      "url": "https://www.forex.com/en-us/trading-accounts/raw-pricing-account/",
+      "description": "Spreads from 0.2 pips on EUR/USD with $7 USD commission per $100k notional; minimum deposit $100"
+    }
+  ],
+  "hasAPI": [
+    {
+      "@type": "WebAPI",
+      "name": "FOREX.com Session API",
+      "@id": "forex-com:forex-com-session-api",
+      "description": "Authenticate and manage API sessions for the FOREX.com trading platform.",
+      "entryPoint": {
+        "@type": "EntryPoint",
+        "url": "https://ciapi.cityindex.com/TradingAPI/session",
+        "httpMethod": "POST",
+        "contentType": "application/json"
+      }
+    },
+    {
+      "@type": "WebAPI",
+      "name": "FOREX.com Account API",
+      "@id": "forex-com:forex-com-account-api",
+      "description": "Retrieve client and trading account details including account IDs, balance, and available margin.",
+      "entryPoint": {
+        "@type": "EntryPoint",
+        "url": "https://ciapi.cityindex.com/TradingAPI/UserAccount/ClientAndTradingAccount",
+        "httpMethod": "GET"
+      }
+    },
+    {
+      "@type": "WebAPI",
+      "name": "FOREX.com Market API",
+      "@id": "forex-com:forex-com-market-api",
+      "description": "Search and retrieve market details for tradeable instruments across 80+ forex and CFD markets.",
+      "entryPoint": [
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/market/fullsearchwithtags",
+          "httpMethod": "GET"
+        },
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/cfd/markets",
+          "httpMethod": "GET"
+        }
+      ]
+    },
+    {
+      "@type": "WebAPI",
+      "name": "FOREX.com Pricing API",
+      "@id": "forex-com:forex-com-pricing-api",
+      "description": "Access real-time and historical price data for forex and CFD markets. Historical OHLC data and tick history supported.",
+      "entryPoint": [
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/market/{marketId}/tickhistory",
+          "httpMethod": "GET"
+        },
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/market/{marketId}/barhistory",
+          "httpMethod": "GET"
+        }
+      ]
+    },
+    {
+      "@type": "WebAPI",
+      "name": "FOREX.com Order API",
+      "@id": "forex-com:forex-com-order-api",
+      "description": "Place and manage trade orders on the FOREX.com platform. Supports market orders, stop/limit orders, and order cancellation.",
+      "entryPoint": [
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/order/newtradeorder",
+          "httpMethod": "POST",
+          "contentType": "application/json"
+        },
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/order/newstoplimitorder",
+          "httpMethod": "POST",
+          "contentType": "application/json"
+        },
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/order/cancel",
+          "httpMethod": "POST",
+          "contentType": "application/json"
+        },
+        {
+          "@type": "EntryPoint",
+          "url": "https://ciapi.cityindex.com/TradingAPI/order/activeorders",
+          "httpMethod": "POST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "@type": "WebAPI",
+      "name": "FOREX.com Position API",
+      "@id": "forex-com:forex-com-position-api",
+      "description": "List and manage open trading positions on the FOREX.com platform.",
+      "entryPoint": {
+        "@type": "EntryPoint",
+        "url": "https://ciapi.cityindex.com/TradingAPI/order/openpositions",
+        "httpMethod": "GET"
+      }
+    }
+  ],
+  "featureList": [
+    "REST API using JSON over HTTP at base URL https://ciapi.cityindex.com/TradingAPI/",
+    "Header-based authentication with UserName and Session ID obtained from /session endpoint",
+    "AppKey required — obtained by contacting support.en@forex.com",
+    "Real-time bid/ask/offer pricing via Lightstreamer streaming",
+    "Historical OHLC price data up to 4,000 records per request",
+    "Order execution for Buy/Sell with stop-loss, take-profit, and price tolerance slippage control",
+    "Account balance, available margin, open positions, and historical trade access",
+    "80+ forex and CFD markets supported",
+    "FIX API available for institutional clients"
+  ],
+  "availableLanguage": [
+    "Python",
+    "C++",
+    "Perl",
+    "VB.NET"
+  ],
+  "keywords": [
+    "Forex",
+    "FX Trading",
+    "CFD Trading",
+    "Algorithmic Trading",
+    "Financial Services",
+    "Trading APIs",
+    "Currency Exchange"
+  ]
+}
