@@ -119,7 +119,7 @@ common:
   - url: https://www.forex.com/
     type: Website
   - url: https://www.forex.com/en-us/trading-accounts/new-trading-account/
-    type: SignUp
+    type: Signup
   - url: https://www.forex.com/en/help-and-support/
     type: Support
   - type: Features
