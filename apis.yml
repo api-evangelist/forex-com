@@ -98,6 +98,12 @@ tags:
 kind: contract
 access: 3rd-Party
 common:
+  - type: VulnerabilityDisclosure
+    url: security/forex-com-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/forex-com-domain-security.yml
+  - type: Authentication
+    url: authentication/forex-com-authentication.yml
   - url: https://www.forex.com/en/trading-tools/api-trading/
     type: Portal
   - url: https://www.forex.com/en/trading-tools/api-trading/

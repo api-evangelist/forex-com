@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: SessionAuth
+  type: apiKey
+  in: header
+  parameter: Session
+  description: Session ID obtained from POST /session
+  sources:
+  - openapi/openapi.yml
+- name: UserNameAuth
+  type: apiKey
+  in: header
+  parameter: UserName
+  description: FOREX.com account username
+  sources:
+  - openapi/openapi.yml
