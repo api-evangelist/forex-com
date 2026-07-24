@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: FOREX.com REST Account API
+  description: The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.
+  version: 1.0.0
+  contact:
+    name: FOREX.com API Support
+    url: https://www.forex.com/en/help-and-support/
+    email: support.en@forex.com
+  termsOfService: https://www.forex.com/en-us/help-and-support/pricing-and-fees/
+  x-api-id: forex-com-trading-api
+  x-logo:
+    url: https://www.forex.com/favicon.ico
+servers:
+- url: https://ciapi.cityindex.com/TradingAPI
+  description: FOREX.com REST API Base URL
+security:
+- SessionAuth: []
+  UserNameAuth: []
+tags:
+- name: Account
+  description: Client and trading account information
+paths:
+  /UserAccount/ClientAndTradingAccount:
+    get:
+      operationId: getClientAndTradingAccount
+      summary: Get client and trading account details
+      description: Retrieve client and trading account details including TradingAccountId, account balance, available margin, and personal account information. The TradingAccountId is required for all order and position operations.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Account information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientAndTradingAccountResponse'
+components:
+  schemas:
+    TradingAccount:
+      type: object
+      properties:
+        TradingAccountId:
+          type: integer
+          description: Trading account ID required for orders and positions
+        TradingAccountName:
+          type: string
+        Currency:
+          type: string
+          description: Account currency (e.g. USD)
+        Balance:
+          type: number
+          format: double
+        CashAvailable:
+          type: number
+          format: double
+        NetEquity:
+          type: number
+          format: double
+        OpenTradeEquity:
+          type: number
+          format: double
+        Margin:
+          type: number
+          format: double
+        MarginIndicator:
+          type: number
+          format: double
+        TradingAccountType:
+          type: string
+          description: Account type (e.g. CFD, Spread)
+        TradingAccountStatus:
+          type: string
+    ClientAndTradingAccountResponse:
+      type: object
+      properties:
+        TradingAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TradingAccount'
+        ClientAccountId:
+          type: integer
+        ClientAccountName:
+          type: string
+  securitySchemes:
+    SessionAuth:
+      type: apiKey
+      in: header
+      name: Session
+      description: Session ID obtained from POST /session
+    UserNameAuth:
+      type: apiKey
+      in: header
+      name: UserName
+      description: FOREX.com account username
+externalDocs:
+  description: FOREX.com API Trading Documentation
+  url: https://www.forex.com/en/trading-tools/api-trading/

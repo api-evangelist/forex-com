@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: FOREX.com REST Account Market API
+  description: The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.
+  version: 1.0.0
+  contact:
+    name: FOREX.com API Support
+    url: https://www.forex.com/en/help-and-support/
+    email: support.en@forex.com
+  termsOfService: https://www.forex.com/en-us/help-and-support/pricing-and-fees/
+  x-api-id: forex-com-trading-api
+  x-logo:
+    url: https://www.forex.com/favicon.ico
+servers:
+- url: https://ciapi.cityindex.com/TradingAPI
+  description: FOREX.com REST API Base URL
+security:
+- SessionAuth: []
+  UserNameAuth: []
+tags:
+- name: Market
+  description: Market search and instrument lookup
+paths:
+  /market/fullsearchwithtags:
+    get:
+      operationId: searchMarketsWithTags
+      summary: Search markets with tags
+      description: Search for tradeable instruments (forex pairs, CFDs) by name or tag. Returns a list of markets with their MarketId values, which are required for order placement and price subscription requests.
+      tags:
+      - Market
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: Market name or tag to search for (e.g. EUR/USD)
+        schema:
+          type: string
+        example: EUR/USD
+      responses:
+        '200':
+          description: Market search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketSearchResponse'
+  /cfd/markets:
+    get:
+      operationId: getCfdMarkets
+      summary: Get CFD market information
+      description: Retrieve market information for a specific CFD market by name. Returns MarketId and other market details needed for trading operations.
+      tags:
+      - Market
+      parameters:
+      - name: MarketName
+        in: query
+        required: true
+        description: Market name to look up (e.g. USD/CAD)
+        schema:
+          type: string
+        example: EUR/USD
+      responses:
+        '200':
+          description: Market information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CfdMarketsResponse'
+components:
+  schemas:
+    CfdMarketsResponse:
+      type: object
+      properties:
+        Markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
+    Market:
+      type: object
+      properties:
+        MarketId:
+          type: integer
+          description: Unique market identifier used for orders and price subscriptions
+        Name:
+          type: string
+          description: Market name (e.g. EUR/USD)
+        WebsiteName:
+          type: string
+        Bid:
+          type: number
+          format: double
+          description: Current bid price
+        Offer:
+          type: number
+          format: double
+          description: Current offer (ask) price
+        High:
+          type: number
+          format: double
+          description: Day high price
+        Low:
+          type: number
+          format: double
+          description: Day low price
+        Change:
+          type: number
+          format: double
+        PercentChange:
+          type: number
+          format: double
+        PriceDecimalPlaces:
+          type: integer
+        MarketSizesCurrencyCode:
+          type: string
+        ExchangeId:
+          type: integer
+        MarketDecimals:
+          type: integer
+    MarketSearchResponse:
+      type: object
+      properties:
+        Markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
+  securitySchemes:
+    SessionAuth:
+      type: apiKey
+      in: header
+      name: Session
+      description: Session ID obtained from POST /session
+    UserNameAuth:
+      type: apiKey
+      in: header
+      name: UserName
+      description: FOREX.com account username
+externalDocs:
+  description: FOREX.com API Trading Documentation
+  url: https://www.forex.com/en/trading-tools/api-trading/

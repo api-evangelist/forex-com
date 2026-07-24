@@ -1,0 +1,332 @@
+openapi: 3.0.3
+info:
+  title: FOREX.com REST Account Orders API
+  description: The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.
+  version: 1.0.0
+  contact:
+    name: FOREX.com API Support
+    url: https://www.forex.com/en/help-and-support/
+    email: support.en@forex.com
+  termsOfService: https://www.forex.com/en-us/help-and-support/pricing-and-fees/
+  x-api-id: forex-com-trading-api
+  x-logo:
+    url: https://www.forex.com/favicon.ico
+servers:
+- url: https://ciapi.cityindex.com/TradingAPI
+  description: FOREX.com REST API Base URL
+security:
+- SessionAuth: []
+  UserNameAuth: []
+tags:
+- name: Orders
+  description: Trade order placement and management
+paths:
+  /order/newtradeorder:
+    post:
+      operationId: newTradeOrder
+      summary: Place a new market trade order
+      description: Place a new market price trade order on the FOREX.com platform. Executes immediately at the current market bid/ask price. Supports configurable direction (buy/sell), quantity, stop-loss, take-profit, and price tolerance for slippage control.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTradeOrderRequest'
+            example:
+              Direction: buy
+              MarketId: 400616380
+              Quantity: 10000
+              MarketName: EUR/USD
+              TradingAccountId: 12345678
+              OfferPrice: 1.08532
+              PriceTolerance: 10
+              IfDone:
+              - Stop:
+                  TriggerPrice: 1.075
+                  Direction: sell
+                  Quantity: 10000
+                Limit:
+                  TriggerPrice: 1.095
+                  Direction: sell
+                  Quantity: 10000
+      responses:
+        '200':
+          description: Trade order result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeOrderResponse'
+  /order/newstoplimitorder:
+    post:
+      operationId: newStopLimitOrder
+      summary: Place a new stop or limit order
+      description: Place a new stop or limit order that triggers at a specified price. Used for entry orders that execute when the market reaches the TriggerPrice.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStopLimitOrderRequest'
+      responses:
+        '200':
+          description: Stop/limit order result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeOrderResponse'
+  /order/activeorders:
+    post:
+      operationId: listActiveOrders
+      summary: List active orders
+      description: Retrieve a list of active (pending) orders for the specified trading account.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActiveOrdersRequest'
+            example:
+              TradingAccountId: 12345678
+              MaxResults: 100
+      responses:
+        '200':
+          description: Active orders retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveOrdersResponse'
+  /order/cancel:
+    post:
+      operationId: cancelOrder
+      summary: Cancel an active order
+      description: Cancel a pending active order by its OrderId.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelOrderRequest'
+            example:
+              TradingAccountId: 12345678
+              OrderId: 987654321
+      responses:
+        '200':
+          description: Order cancellation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelOrderResponse'
+components:
+  schemas:
+    NewStopLimitOrderRequest:
+      type: object
+      required:
+      - Direction
+      - MarketId
+      - Quantity
+      - TradingAccountId
+      - OfferPrice
+      - TriggerPrice
+      properties:
+        Direction:
+          type: string
+          enum:
+          - buy
+          - sell
+          description: Trade direction
+        MarketId:
+          type: integer
+          description: Market ID for the instrument
+        Quantity:
+          type: number
+          format: double
+          description: Trade quantity
+        MarketName:
+          type: string
+          description: Market name
+        TradingAccountId:
+          type: integer
+          description: Trading account ID
+        OfferPrice:
+          type: number
+          format: double
+          description: Offer price
+        TriggerPrice:
+          type: number
+          format: double
+          description: Price at which the stop/limit order triggers
+        IfDone:
+          type: array
+          items:
+            $ref: '#/components/schemas/IfDoneOrder'
+    IfDoneOrder:
+      type: object
+      properties:
+        Stop:
+          $ref: '#/components/schemas/ConditionalOrder'
+        Limit:
+          $ref: '#/components/schemas/ConditionalOrder'
+    ActiveOrdersResponse:
+      type: object
+      properties:
+        ActiveOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActiveOrder'
+    ConditionalOrder:
+      type: object
+      properties:
+        TriggerPrice:
+          type: number
+          format: double
+          description: Price at which to trigger the conditional order
+        Direction:
+          type: string
+          enum:
+          - buy
+          - sell
+          description: Direction of the conditional order (opposite of parent order)
+        Quantity:
+          type: number
+          format: double
+          description: Quantity for the conditional order
+    TradeOrderResponse:
+      type: object
+      properties:
+        OrderId:
+          type: integer
+          description: Order ID assigned to the trade
+        StatusReason:
+          type: integer
+          description: Reason code for order status
+        Status:
+          type: integer
+          description: Order status code
+        Price:
+          type: number
+          format: double
+          description: Execution price
+        AuditId:
+          type: string
+          description: Audit ID for the order
+    CancelOrderRequest:
+      type: object
+      required:
+      - TradingAccountId
+      - OrderId
+      properties:
+        TradingAccountId:
+          type: integer
+          description: Trading account ID
+        OrderId:
+          type: integer
+          description: Order ID to cancel
+    NewTradeOrderRequest:
+      type: object
+      required:
+      - Direction
+      - MarketId
+      - Quantity
+      - TradingAccountId
+      - OfferPrice
+      properties:
+        Direction:
+          type: string
+          enum:
+          - buy
+          - sell
+          description: Trade direction
+        MarketId:
+          type: integer
+          description: Market ID for the instrument to trade
+        Quantity:
+          type: number
+          format: double
+          description: Trade quantity
+        MarketName:
+          type: string
+          description: Market name (e.g. EUR/USD)
+        TradingAccountId:
+          type: integer
+          description: Trading account ID
+        OfferPrice:
+          type: number
+          format: double
+          description: Offer (ask) price at time of order
+        PriceTolerance:
+          type: number
+          format: double
+          description: Slippage tolerance in pips (default 10)
+          default: 10
+        IfDone:
+          type: array
+          description: Conditional stop-loss and take-profit orders
+          items:
+            $ref: '#/components/schemas/IfDoneOrder'
+    ActiveOrdersRequest:
+      type: object
+      required:
+      - TradingAccountId
+      properties:
+        TradingAccountId:
+          type: integer
+          description: Trading account ID
+        MaxResults:
+          type: integer
+          description: Maximum number of results to return
+          default: 100
+    CancelOrderResponse:
+      type: object
+      properties:
+        OrderId:
+          type: integer
+        StatusReason:
+          type: integer
+        Status:
+          type: integer
+    ActiveOrder:
+      type: object
+      properties:
+        OrderId:
+          type: integer
+        MarketId:
+          type: integer
+        MarketName:
+          type: string
+        Direction:
+          type: string
+          enum:
+          - buy
+          - sell
+        Quantity:
+          type: number
+          format: double
+        TriggerPrice:
+          type: number
+          format: double
+        Status:
+          type: integer
+        StatusReason:
+          type: integer
+  securitySchemes:
+    SessionAuth:
+      type: apiKey
+      in: header
+      name: Session
+      description: Session ID obtained from POST /session
+    UserNameAuth:
+      type: apiKey
+      in: header
+      name: UserName
+      description: FOREX.com account username
+externalDocs:
+  description: FOREX.com API Trading Documentation
+  url: https://www.forex.com/en/trading-tools/api-trading/

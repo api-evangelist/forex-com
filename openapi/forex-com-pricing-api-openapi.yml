@@ -1,0 +1,416 @@
+openapi: 3.0.3
+info:
+  title: FOREX.com REST Account Pricing API
+  description: The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.
+  version: 1.0.0
+  contact:
+    name: FOREX.com API Support
+    url: https://www.forex.com/en/help-and-support/
+    email: support.en@forex.com
+  termsOfService: https://www.forex.com/en-us/help-and-support/pricing-and-fees/
+  x-api-id: forex-com-trading-api
+  x-logo:
+    url: https://www.forex.com/favicon.ico
+servers:
+- url: https://ciapi.cityindex.com/TradingAPI
+  description: FOREX.com REST API Base URL
+security:
+- SessionAuth: []
+  UserNameAuth: []
+tags:
+- name: Pricing
+  description: Real-time tick history and OHLC bar history
+paths:
+  /market/{marketId}/tickhistory:
+    get:
+      operationId: getTickHistory
+      summary: Get recent tick price history
+      description: Retrieve recent tick price history for a given market. Returns bid, ask, and mid prices for the most recent ticks. Maximum 4,000 records per request.
+      tags:
+      - Pricing
+      parameters:
+      - name: marketId
+        in: path
+        required: true
+        description: Market ID for the instrument
+        schema:
+          type: integer
+        example: 400616380
+      - name: PriceTicks
+        in: query
+        required: false
+        description: Number of price ticks to return (max 4000)
+        schema:
+          type: integer
+          maximum: 4000
+          default: 1
+        example: 100
+      - name: priceType
+        in: query
+        required: false
+        description: Price type to return
+        schema:
+          type: string
+          enum:
+          - MID
+          - BID
+          - ASK
+          default: MID
+      responses:
+        '200':
+          description: Tick price history retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickHistoryResponse'
+  /market/{marketId}/tickhistorybetween:
+    get:
+      operationId: getTickHistoryBetween
+      summary: Get tick history between two timestamps
+      description: Retrieve tick price history for a market between two UTC timestamps.
+      tags:
+      - Pricing
+      parameters:
+      - name: marketId
+        in: path
+        required: true
+        description: Market ID for the instrument
+        schema:
+          type: integer
+      - name: fromTimeStampUTC
+        in: query
+        required: true
+        description: Start timestamp in UTC (Unix epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      - name: toTimestampUTC
+        in: query
+        required: true
+        description: End timestamp in UTC (Unix epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      - name: priceType
+        in: query
+        required: false
+        description: Price type to return
+        schema:
+          type: string
+          enum:
+          - MID
+          - BID
+          - ASK
+          default: MID
+      responses:
+        '200':
+          description: Tick price history between timestamps
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickHistoryResponse'
+  /market/{marketId}/tickhistoryafter:
+    get:
+      operationId: getTickHistoryAfter
+      summary: Get tick history after a timestamp
+      description: Retrieve a number of tick price records after a given UTC timestamp.
+      tags:
+      - Pricing
+      parameters:
+      - name: marketId
+        in: path
+        required: true
+        description: Market ID for the instrument
+        schema:
+          type: integer
+      - name: maxResults
+        in: query
+        required: true
+        description: Maximum number of results to return (max 4000)
+        schema:
+          type: integer
+          maximum: 4000
+      - name: fromTimeStampUTC
+        in: query
+        required: true
+        description: Start timestamp in UTC (Unix epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      - name: priceType
+        in: query
+        required: false
+        description: Price type to return
+        schema:
+          type: string
+          enum:
+          - MID
+          - BID
+          - ASK
+          default: MID
+      responses:
+        '200':
+          description: Tick price history after timestamp
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickHistoryResponse'
+  /market/{marketId}/tickhistorybefore:
+    get:
+      operationId: getTickHistoryBefore
+      summary: Get tick history before a timestamp
+      description: Retrieve a number of tick price records before a given UTC timestamp.
+      tags:
+      - Pricing
+      parameters:
+      - name: marketId
+        in: path
+        required: true
+        description: Market ID for the instrument
+        schema:
+          type: integer
+      - name: maxResults
+        in: query
+        required: true
+        description: Maximum number of results to return (max 4000)
+        schema:
+          type: integer
+          maximum: 4000
+      - name: toTimeStampUTC
+        in: query
+        required: true
+        description: End timestamp in UTC (Unix epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      - name: priceType
+        in: query
+        required: false
+        description: Price type to return
+        schema:
+          type: string
+          enum:
+          - MID
+          - BID
+          - ASK
+          default: MID
+      responses:
+        '200':
+          description: Tick price history before timestamp
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickHistoryResponse'
+  /market/{marketId}/barhistory:
+    get:
+      operationId: getBarHistory
+      summary: Get OHLC bar history
+      description: Retrieve open, high, low, close (OHLC) price bar history for a market. Supports MINUTE, HOUR, and DAY intervals with configurable span.
+      tags:
+      - Pricing
+      parameters:
+      - name: marketId
+        in: path
+        required: true
+        description: Market ID for the instrument
+        schema:
+          type: integer
+      - name: interval
+        in: query
+        required: true
+        description: Bar interval type
+        schema:
+          type: string
+          enum:
+          - MINUTE
+          - HOUR
+          - DAY
+      - name: span
+        in: query
+        required: true
+        description: Interval span (e.g. 1 for 1-hour bars, 15 for 15-minute bars)
+        schema:
+          type: integer
+      - name: PriceBars
+        in: query
+        required: false
+        description: Number of price bars to return (max 4000)
+        schema:
+          type: integer
+          maximum: 4000
+          default: 1
+      responses:
+        '200':
+          description: OHLC bar history retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarHistoryResponse'
+  /market/{marketId}/barhistorybetween:
+    get:
+      operationId: getBarHistoryBetween
+      summary: Get OHLC bar history between two timestamps
+      description: Retrieve OHLC price bars for a market between two UTC timestamps.
+      tags:
+      - Pricing
+      parameters:
+      - name: marketId
+        in: path
+        required: true
+        description: Market ID for the instrument
+        schema:
+          type: integer
+      - name: interval
+        in: query
+        required: true
+        description: Bar interval type
+        schema:
+          type: string
+          enum:
+          - MINUTE
+          - HOUR
+          - DAY
+      - name: span
+        in: query
+        required: true
+        description: Interval span
+        schema:
+          type: integer
+      - name: fromTimeStampUTC
+        in: query
+        required: true
+        description: Start timestamp in UTC (Unix epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      - name: toTimestampUTC
+        in: query
+        required: true
+        description: End timestamp in UTC (Unix epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OHLC bar history between timestamps
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarHistoryResponse'
+  /market/{marketId}/barhistorybefore:
+    get:
+      operationId: getBarHistoryBefore
+      summary: Get OHLC bar history before a timestamp
+      description: Retrieve a number of OHLC bar records before a given UTC timestamp.
+      tags:
+      - Pricing
+      parameters:
+      - name: marketId
+        in: path
+        required: true
+        description: Market ID for the instrument
+        schema:
+          type: integer
+      - name: interval
+        in: query
+        required: true
+        description: Bar interval type
+        schema:
+          type: string
+          enum:
+          - MINUTE
+          - HOUR
+          - DAY
+      - name: span
+        in: query
+        required: true
+        description: Interval span
+        schema:
+          type: integer
+      - name: maxResults
+        in: query
+        required: true
+        description: Maximum number of results to return (max 4000)
+        schema:
+          type: integer
+          maximum: 4000
+      - name: toTimeStampUTC
+        in: query
+        required: true
+        description: End timestamp in UTC (Unix epoch milliseconds)
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OHLC bar history before timestamp
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarHistoryResponse'
+components:
+  schemas:
+    BarHistoryResponse:
+      type: object
+      properties:
+        PriceBars:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceBar'
+    PriceBar:
+      type: object
+      properties:
+        BarDate:
+          type: string
+          description: Bar date in /Date(milliseconds)/ format
+        Open:
+          type: number
+          format: double
+          description: Opening price
+        High:
+          type: number
+          format: double
+          description: High price
+        Low:
+          type: number
+          format: double
+          description: Low price
+        Close:
+          type: number
+          format: double
+          description: Closing price
+        Volume:
+          type: number
+          format: double
+          description: Volume (if available)
+    PriceTick:
+      type: object
+      properties:
+        Price:
+          type: number
+          format: double
+          description: Tick price value
+        TickDate:
+          type: string
+          description: Tick date in /Date(milliseconds)/ format
+    TickHistoryResponse:
+      type: object
+      properties:
+        PriceTicks:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceTick'
+  securitySchemes:
+    SessionAuth:
+      type: apiKey
+      in: header
+      name: Session
+      description: Session ID obtained from POST /session
+    UserNameAuth:
+      type: apiKey
+      in: header
+      name: UserName
+      description: FOREX.com account username
+externalDocs:
+  description: FOREX.com API Trading Documentation
+  url: https://www.forex.com/en/trading-tools/api-trading/
