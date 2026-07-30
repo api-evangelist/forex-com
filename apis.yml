@@ -1,91 +1,144 @@
 aid: forex-com
 url: https://raw.githubusercontent.com/api-evangelist/forex-com/main/apis.yml
 apis:
-  - aid: forex-com:forex-com-session-api
-    name: FOREX.com Session API
-    tags:
-      - Authentication
-      - Session Management
-      - Forex
-      - Trading
-    properties:
-      - url: https://www.forex.com/en/trading-tools/api-trading/
-        type: Documentation
-    description: >-
-      Authenticate and manage API sessions for the FOREX.com trading platform. A POST
-      request to the session endpoint with username, password, and AppKey returns a
-      session ID used as a header credential for all subsequent REST API requests.
-  - aid: forex-com:forex-com-account-api
-    name: FOREX.com Account API
-    tags:
-      - Accounts
-      - Forex
-      - Trading
-    properties:
-      - url: https://www.forex.com/en/trading-tools/api-trading/
-        type: Documentation
-    description: >-
-      Retrieve client and trading account details including account IDs, balance,
-      available margin, and personal account information. The /useraccount/ClientAndTradingAccount
-      endpoint returns the Trading Account ID required for all order and position operations.
-  - aid: forex-com:forex-com-market-api
-    name: FOREX.com Market API
-    tags:
-      - Markets
-      - Forex
-      - Currency Pairs
-      - Instruments
-    properties:
-      - url: https://www.forex.com/en/trading-tools/api-trading/
-        type: Documentation
-    description: >-
-      Search and retrieve market details for tradeable instruments across 80+ forex and
-      CFD markets. Supports full market search by name or tag to resolve Market IDs used
-      in order placement and price subscription requests.
-  - aid: forex-com:forex-com-pricing-api
-    name: FOREX.com Pricing API
-    tags:
-      - Pricing
-      - Forex
-      - Real-Time Rates
-      - Streaming
-      - Historical Data
-    properties:
-      - url: https://www.forex.com/en/trading-tools/api-trading/
-        type: Documentation
-    description: >-
-      Access real-time and historical price data for forex and CFD markets. Real-time
-      bid/ask/offer prices are delivered via Lightstreamer streaming subscriptions using
-      MERGE mode. Historical OHLC price data supports up to 4,000 records per request
-      with configurable date range, count, and price type (ask/bid/mid).
-  - aid: forex-com:forex-com-order-api
-    name: FOREX.com Order API
-    tags:
-      - Orders
-      - Forex
-      - Trading
-      - Execution
-    properties:
-      - url: https://www.forex.com/en/trading-tools/api-trading/
-        type: Documentation
-    description: >-
-      Place and manage trade orders on the FOREX.com platform against live streaming
-      prices. Supports market price orders with configurable direction (Buy/Sell), quantity,
-      stop-loss, take-profit, and price tolerance. Order status updates are delivered via
-      streaming subscription.
-  - aid: forex-com:forex-com-position-api
-    name: FOREX.com Position API
-    tags:
-      - Positions
-      - Forex
-      - Trading
-    properties:
-      - url: https://www.forex.com/en/trading-tools/api-trading/
-        type: Documentation
-    description: >-
-      List and manage open trading positions on the FOREX.com platform. Retrieve active
-      positions including unrealised P&L, direction, quantity, and pricing details for
-      all open trades in a trading account.
+- aid: forex-com:forex-com-session-api
+  name: FOREX.com Session API
+  tags:
+  - Authentication
+  - Session Management
+  - Forex
+  - Trading
+  properties:
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Documentation
+  description: >-
+    Authenticate and manage API sessions for the FOREX.com trading platform. A POST request to the session
+    endpoint with username, password, and AppKey returns a session ID used as a header credential for
+    all subsequent REST API requests.
+- aid: forex-com:forex-com-account-api
+  name: FOREX.com Account API
+  tags:
+  - Accounts
+  - Forex
+  - Trading
+  properties:
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Documentation
+  description: >-
+    Retrieve client and trading account details including account IDs, balance, available margin, and
+    personal account information. The /useraccount/ClientAndTradingAccount endpoint returns the Trading
+    Account ID required for all order and position operations.
+- aid: forex-com:forex-com-market-api
+  name: FOREX.com Market API
+  tags:
+  - Markets
+  - Forex
+  - Currency Pairs
+  - Instruments
+  properties:
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Documentation
+  description: >-
+    Search and retrieve market details for tradeable instruments across 80+ forex and CFD markets. Supports
+    full market search by name or tag to resolve Market IDs used in order placement and price subscription
+    requests.
+- aid: forex-com:forex-com-pricing-api
+  name: FOREX.com Pricing API
+  tags:
+  - Pricing
+  - Forex
+  - Real-Time Rates
+  - Streaming
+  - Historical Data
+  properties:
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Documentation
+  description: >-
+    Access real-time and historical price data for forex and CFD markets. Real-time bid/ask/offer prices
+    are delivered via Lightstreamer streaming subscriptions using MERGE mode. Historical OHLC price data
+    supports up to 4,000 records per request with configurable date range, count, and price type (ask/bid/mid).
+- aid: forex-com:forex-com-order-api
+  name: FOREX.com Order API
+  tags:
+  - Orders
+  - Forex
+  - Trading
+  - Execution
+  properties:
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Documentation
+  description: >-
+    Place and manage trade orders on the FOREX.com platform against live streaming prices. Supports market
+    price orders with configurable direction (Buy/Sell), quantity, stop-loss, take-profit, and price tolerance.
+    Order status updates are delivered via streaming subscription.
+- aid: forex-com:forex-com-position-api
+  name: FOREX.com Position API
+  tags:
+  - Positions
+  - Forex
+  - Trading
+  properties:
+  - url: https://www.forex.com/en/trading-tools/api-trading/
+    type: Documentation
+  description: >-
+    List and manage open trading positions on the FOREX.com platform. Retrieve active positions including
+    unrealised P&L, direction, quantity, and pricing details for all open trades in a trading account.
+- aid: forex-com:forex-com-account-api
+  name: FOREX.com Account API
+  description: Client and trading account information
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/forex-com-account-api-openapi.yml
+- aid: forex-com:forex-com-margin-api
+  name: FOREX.com Margin API
+  description: Account margin and cash balance
+  tags:
+  - Margin
+  properties:
+  - type: OpenAPI
+    url: openapi/forex-com-margin-api-openapi.yml
+- aid: forex-com:forex-com-market-api
+  name: FOREX.com Market API
+  description: Market search and instrument lookup
+  tags:
+  - Market
+  properties:
+  - type: OpenAPI
+    url: openapi/forex-com-market-api-openapi.yml
+- aid: forex-com:forex-com-orders-api
+  name: FOREX.com Orders API
+  description: Trade order placement and management
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/forex-com-orders-api-openapi.yml
+- aid: forex-com:forex-com-positions-api
+  name: FOREX.com Positions API
+  description: Open position management
+  tags:
+  - Positions
+  properties:
+  - type: OpenAPI
+    url: openapi/forex-com-positions-api-openapi.yml
+- aid: forex-com:forex-com-pricing-api
+  name: FOREX.com Pricing API
+  description: Real-time tick history and OHLC bar history
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/forex-com-pricing-api-openapi.yml
+- aid: forex-com:forex-com-session-api
+  name: FOREX.com Session API
+  description: Authentication and session management
+  tags:
+  - Session
+  properties:
+  - type: OpenAPI
+    url: openapi/forex-com-session-api-openapi.yml
 name: FOREX.com
 tags:
   - Forex
@@ -155,6 +208,19 @@ common:
       - https://www.forexbrokers.com/guides/best-api-brokers
       - https://www.forex.com/en/trading-tools/api-trading/
     updated: '2026-06-13'
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 created: '2026-06-13'
 modified: '2026-06-13'
 position: Consuming
