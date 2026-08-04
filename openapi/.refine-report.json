@@ -1,0 +1,26 @@
+{
+  "provider": "forex-com",
+  "sources": [
+    "forex-com-account-api-openapi.yml",
+    "forex-com-margin-api-openapi.yml",
+    "forex-com-market-api-openapi.yml",
+    "forex-com-orders-api-openapi.yml",
+    "forex-com-positions-api-openapi.yml",
+    "forex-com-pricing-api-openapi.yml",
+    "forex-com-session-api-openapi.yml"
+  ],
+  "outputs": [
+    "forex-com-account-api-openapi.yml",
+    "forex-com-margin-api-openapi.yml",
+    "forex-com-market-api-openapi.yml",
+    "forex-com-orders-api-openapi.yml",
+    "forex-com-positions-api-openapi.yml",
+    "forex-com-pricing-api-openapi.yml",
+    "forex-com-session-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
