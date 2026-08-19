@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOREX.com REST Account Session API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Session",
+      "value": "{{Session}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a session (authenticate)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ciapi.cityindex.com/TradingAPI/session",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate with FOREX.com using username, password, and AppKey. Returns a Session ID used as a header credential for all subsequent requests. The AppKey must be obtained by contacting support.en@forex.com (allow up to 3 business days for activation)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

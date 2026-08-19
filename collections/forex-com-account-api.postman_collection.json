@@ -1,0 +1,129 @@
+{
+  "item": [
+    {
+      "id": "f273a8c6-7255-4e65-8987-2b71dcd84ede",
+      "name": "Account",
+      "description": {
+        "content": "Client and trading account information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c726b93-a57b-41c0-bf37-259b8fe9e425",
+          "name": "Get client and trading account details",
+          "request": {
+            "name": "Get client and trading account details",
+            "description": {
+              "content": "Retrieve client and trading account details including TradingAccountId, account balance, available margin, and personal account information. The TradingAccountId is required for all order and position operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "UserAccount",
+                "ClientAndTradingAccount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4fe1765-6c42-4848-b8b3-02d9240d0250",
+              "name": "Account information retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "UserAccount",
+                    "ClientAndTradingAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"TradingAccounts\": [\n    {\n      \"TradingAccountId\": 9272,\n      \"TradingAccountName\": \"string\",\n      \"Currency\": \"string\",\n      \"Balance\": 9530.164182949606,\n      \"CashAvailable\": 1365.5841005165714,\n      \"NetEquity\": 9447.604795789182,\n      \"OpenTradeEquity\": 649.9910306856316,\n      \"Margin\": 5222.917455655929,\n      \"MarginIndicator\": 1804.697208404158,\n      \"TradingAccountType\": \"string\",\n      \"TradingAccountStatus\": \"string\"\n    },\n    {\n      \"TradingAccountId\": 3157,\n      \"TradingAccountName\": \"string\",\n      \"Currency\": \"string\",\n      \"Balance\": 2230.8567128222635,\n      \"CashAvailable\": 6293.283205672207,\n      \"NetEquity\": 4645.135392423773,\n      \"OpenTradeEquity\": 468.00004658594463,\n      \"Margin\": 2954.8652128761332,\n      \"MarginIndicator\": 1319.0808098418415,\n      \"TradingAccountType\": \"string\",\n      \"TradingAccountStatus\": \"string\"\n    }\n  ],\n  \"ClientAccountId\": 1103,\n  \"ClientAccountName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ciapi.cityindex.com/TradingAPI",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Session"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9893c5b7-3b18-490c-9b6b-fe900ed85579",
+    "name": "FOREX.com REST Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.\n\nContact Support:\n Name: FOREX.com API Support\n Email: support.en@forex.com",
+      "type": "text/plain"
+    }
+  }
+}

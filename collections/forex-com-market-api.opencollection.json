@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOREX.com REST Account Market API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Session",
+      "value": "{{Session}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search markets with tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/fullsearchwithtags",
+            "params": [
+              {
+                "name": "query",
+                "value": "EUR/USD",
+                "type": "query",
+                "description": "Market name or tag to search for (e.g. EUR/USD)"
+              }
+            ]
+          },
+          "docs": "Search for tradeable instruments (forex pairs, CFDs) by name or tag. Returns a list of markets with their MarketId values, which are required for order placement and price subscription requests."
+        },
+        {
+          "info": {
+            "name": "Get CFD market information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/cfd/markets",
+            "params": [
+              {
+                "name": "MarketName",
+                "value": "EUR/USD",
+                "type": "query",
+                "description": "Market name to look up (e.g. USD/CAD)"
+              }
+            ]
+          },
+          "docs": "Retrieve market information for a specific CFD market by name. Returns MarketId and other market details needed for trading operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

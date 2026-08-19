@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "e56d995e-5a92-4550-ac4c-b05cabf13070",
+      "name": "Positions",
+      "description": {
+        "content": "Open position management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3740c02-98b7-4fab-a821-4a83464bf757",
+          "name": "List open trading positions",
+          "request": {
+            "name": "List open trading positions",
+            "description": {
+              "content": "Retrieve a list of all open trading positions for the specified trading account. Returns position details including unrealised P&L, direction, quantity, and current pricing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "openpositions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "TradingAccountId",
+                  "value": "<integer>",
+                  "description": "(Required) Trading account ID to retrieve positions for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcea0fa0-6c42-4619-b67c-ce4afdee5e72",
+              "name": "Open positions retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "openpositions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "TradingAccountId",
+                      "value": "12345678"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"OpenPositions\": [\n    {\n      \"OrderId\": 1600,\n      \"MarketId\": 9025,\n      \"MarketName\": \"string\",\n      \"Direction\": \"buy\",\n      \"Quantity\": 544.8827296344971,\n      \"Price\": 9739.760558161348,\n      \"UnrealisedPnl\": 2291.9614118636687,\n      \"Bid\": 8538.358119371835,\n      \"Offer\": 705.6017685235383,\n      \"TradingAccountId\": 9775,\n      \"Currency\": \"string\"\n    },\n    {\n      \"OrderId\": 8982,\n      \"MarketId\": 2170,\n      \"MarketName\": \"string\",\n      \"Direction\": \"sell\",\n      \"Quantity\": 7164.641092709906,\n      \"Price\": 1155.037805123944,\n      \"UnrealisedPnl\": 7068.407818853475,\n      \"Bid\": 7761.202178988492,\n      \"Offer\": 9158.493383629397,\n      \"TradingAccountId\": 3930,\n      \"Currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ciapi.cityindex.com/TradingAPI",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Session"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d0740645-7cf6-4064-8b3c-68cfd46d4320",
+    "name": "FOREX.com REST Account Positions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.\n\nContact Support:\n Name: FOREX.com API Support\n Email: support.en@forex.com",
+      "type": "text/plain"
+    }
+  }
+}

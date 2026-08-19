@@ -1,0 +1,453 @@
+{
+  "item": [
+    {
+      "id": "3573b673-7fe5-47f7-aa16-0a54aa55c14a",
+      "name": "Orders",
+      "description": {
+        "content": "Trade order placement and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2481a0ea-46b9-40e8-805a-18485f624f66",
+          "name": "Place a new market trade order",
+          "request": {
+            "name": "Place a new market trade order",
+            "description": {
+              "content": "Place a new market price trade order on the FOREX.com platform. Executes immediately at the current market bid/ask price. Supports configurable direction (buy/sell), quantity, stop-loss, take-profit, and price tolerance for slippage control.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "newtradeorder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Direction\": \"<string>\",\n  \"MarketId\": \"<integer>\",\n  \"Quantity\": \"<double>\",\n  \"TradingAccountId\": \"<integer>\",\n  \"OfferPrice\": \"<double>\",\n  \"MarketName\": \"<string>\",\n  \"PriceTolerance\": 10,\n  \"IfDone\": [\n    {\n      \"Stop\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      },\n      \"Limit\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      }\n    },\n    {\n      \"Stop\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      },\n      \"Limit\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ef9da24-e558-4ce7-a59a-925cfd0f9e36",
+              "name": "Trade order result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "newtradeorder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Direction\": \"buy\",\n  \"MarketId\": 400616380,\n  \"Quantity\": 10000,\n  \"MarketName\": \"EUR/USD\",\n  \"TradingAccountId\": 12345678,\n  \"OfferPrice\": 1.08532,\n  \"PriceTolerance\": 10,\n  \"IfDone\": [\n    {\n      \"Stop\": {\n        \"TriggerPrice\": 1.075,\n        \"Direction\": \"sell\",\n        \"Quantity\": 10000\n      },\n      \"Limit\": {\n        \"TriggerPrice\": 1.095,\n        \"Direction\": \"sell\",\n        \"Quantity\": 10000\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"OrderId\": 6054,\n  \"StatusReason\": 6679,\n  \"Status\": 7128,\n  \"Price\": 5328.695098048853,\n  \"AuditId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3098acc-5b2d-42a8-8ce2-fe8be012d3cc",
+          "name": "Place a new stop or limit order",
+          "request": {
+            "name": "Place a new stop or limit order",
+            "description": {
+              "content": "Place a new stop or limit order that triggers at a specified price. Used for entry orders that execute when the market reaches the TriggerPrice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "newstoplimitorder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Direction\": \"<string>\",\n  \"MarketId\": \"<integer>\",\n  \"Quantity\": \"<double>\",\n  \"TradingAccountId\": \"<integer>\",\n  \"OfferPrice\": \"<double>\",\n  \"TriggerPrice\": \"<double>\",\n  \"MarketName\": \"<string>\",\n  \"IfDone\": [\n    {\n      \"Stop\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      },\n      \"Limit\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      }\n    },\n    {\n      \"Stop\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      },\n      \"Limit\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26f3e718-e00f-48f6-aca0-c7ec7856b82f",
+              "name": "Stop/limit order result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "newstoplimitorder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Direction\": \"<string>\",\n  \"MarketId\": \"<integer>\",\n  \"Quantity\": \"<double>\",\n  \"TradingAccountId\": \"<integer>\",\n  \"OfferPrice\": \"<double>\",\n  \"TriggerPrice\": \"<double>\",\n  \"MarketName\": \"<string>\",\n  \"IfDone\": [\n    {\n      \"Stop\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      },\n      \"Limit\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      }\n    },\n    {\n      \"Stop\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      },\n      \"Limit\": {\n        \"TriggerPrice\": \"<double>\",\n        \"Direction\": \"<string>\",\n        \"Quantity\": \"<double>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"OrderId\": 6054,\n  \"StatusReason\": 6679,\n  \"Status\": 7128,\n  \"Price\": 5328.695098048853,\n  \"AuditId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4b43257-34e7-41a1-b4b6-7a0245ebdbbe",
+          "name": "List active orders",
+          "request": {
+            "name": "List active orders",
+            "description": {
+              "content": "Retrieve a list of active (pending) orders for the specified trading account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "activeorders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TradingAccountId\": \"<integer>\",\n  \"MaxResults\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f4adda1-d7e9-4cc4-be14-6f8b468fe11b",
+              "name": "Active orders retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "activeorders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"TradingAccountId\": 12345678,\n  \"MaxResults\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ActiveOrders\": [\n    {\n      \"OrderId\": 7988,\n      \"MarketId\": 1325,\n      \"MarketName\": \"string\",\n      \"Direction\": \"sell\",\n      \"Quantity\": 7580.8987278272125,\n      \"TriggerPrice\": 6143.516250461644,\n      \"Status\": 1200,\n      \"StatusReason\": 3807\n    },\n    {\n      \"OrderId\": 6834,\n      \"MarketId\": 1897,\n      \"MarketName\": \"string\",\n      \"Direction\": \"sell\",\n      \"Quantity\": 8846.24020859078,\n      \"TriggerPrice\": 696.667889912963,\n      \"Status\": 8155,\n      \"StatusReason\": 6235\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06eb026a-724b-4e0c-9eb4-9fdbf38551b8",
+          "name": "Cancel an active order",
+          "request": {
+            "name": "Cancel an active order",
+            "description": {
+              "content": "Cancel a pending active order by its OrderId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TradingAccountId\": \"<integer>\",\n  \"OrderId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2b7de16-bf1c-4955-a179-2d445f563731",
+              "name": "Order cancellation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"TradingAccountId\": 12345678,\n  \"OrderId\": 987654321\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"OrderId\": 3992,\n  \"StatusReason\": 2522,\n  \"Status\": 2384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ciapi.cityindex.com/TradingAPI",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Session"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "71330510-fc3c-48b8-9e53-70e86b640e1d",
+    "name": "FOREX.com REST Account Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.\n\nContact Support:\n Name: FOREX.com API Support\n Email: support.en@forex.com",
+      "type": "text/plain"
+    }
+  }
+}

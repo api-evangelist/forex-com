@@ -1,0 +1,291 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOREX.com REST Account Pricing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Session",
+      "value": "{{Session}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get recent tick price history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/:marketId/tickhistory",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "400616380",
+                "type": "path",
+                "description": "Market ID for the instrument"
+              },
+              {
+                "name": "PriceTicks",
+                "value": "100",
+                "type": "query",
+                "description": "Number of price ticks to return (max 4000)"
+              },
+              {
+                "name": "priceType",
+                "value": "",
+                "type": "query",
+                "description": "Price type to return"
+              }
+            ]
+          },
+          "docs": "Retrieve recent tick price history for a given market. Returns bid, ask, and mid prices for the most recent ticks. Maximum 4,000 records per request."
+        },
+        {
+          "info": {
+            "name": "Get tick history between two timestamps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/:marketId/tickhistorybetween",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Market ID for the instrument"
+              },
+              {
+                "name": "fromTimeStampUTC",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp in UTC (Unix epoch milliseconds)"
+              },
+              {
+                "name": "toTimestampUTC",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp in UTC (Unix epoch milliseconds)"
+              },
+              {
+                "name": "priceType",
+                "value": "",
+                "type": "query",
+                "description": "Price type to return"
+              }
+            ]
+          },
+          "docs": "Retrieve tick price history for a market between two UTC timestamps."
+        },
+        {
+          "info": {
+            "name": "Get tick history after a timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/:marketId/tickhistoryafter",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Market ID for the instrument"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (max 4000)"
+              },
+              {
+                "name": "fromTimeStampUTC",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp in UTC (Unix epoch milliseconds)"
+              },
+              {
+                "name": "priceType",
+                "value": "",
+                "type": "query",
+                "description": "Price type to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a number of tick price records after a given UTC timestamp."
+        },
+        {
+          "info": {
+            "name": "Get tick history before a timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/:marketId/tickhistorybefore",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Market ID for the instrument"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (max 4000)"
+              },
+              {
+                "name": "toTimeStampUTC",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp in UTC (Unix epoch milliseconds)"
+              },
+              {
+                "name": "priceType",
+                "value": "",
+                "type": "query",
+                "description": "Price type to return"
+              }
+            ]
+          },
+          "docs": "Retrieve a number of tick price records before a given UTC timestamp."
+        },
+        {
+          "info": {
+            "name": "Get OHLC bar history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/:marketId/barhistory",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Market ID for the instrument"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Bar interval type"
+              },
+              {
+                "name": "span",
+                "value": "",
+                "type": "query",
+                "description": "Interval span (e.g. 1 for 1-hour bars, 15 for 15-minute bars)"
+              },
+              {
+                "name": "PriceBars",
+                "value": "",
+                "type": "query",
+                "description": "Number of price bars to return (max 4000)"
+              }
+            ]
+          },
+          "docs": "Retrieve open, high, low, close (OHLC) price bar history for a market. Supports MINUTE, HOUR, and DAY intervals with configurable span."
+        },
+        {
+          "info": {
+            "name": "Get OHLC bar history between two timestamps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/:marketId/barhistorybetween",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Market ID for the instrument"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Bar interval type"
+              },
+              {
+                "name": "span",
+                "value": "",
+                "type": "query",
+                "description": "Interval span"
+              },
+              {
+                "name": "fromTimeStampUTC",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp in UTC (Unix epoch milliseconds)"
+              },
+              {
+                "name": "toTimestampUTC",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp in UTC (Unix epoch milliseconds)"
+              }
+            ]
+          },
+          "docs": "Retrieve OHLC price bars for a market between two UTC timestamps."
+        },
+        {
+          "info": {
+            "name": "Get OHLC bar history before a timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/market/:marketId/barhistorybefore",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Market ID for the instrument"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Bar interval type"
+              },
+              {
+                "name": "span",
+                "value": "",
+                "type": "query",
+                "description": "Interval span"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return (max 4000)"
+              },
+              {
+                "name": "toTimeStampUTC",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp in UTC (Unix epoch milliseconds)"
+              }
+            ]
+          },
+          "docs": "Retrieve a number of OHLC bar records before a given UTC timestamp."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

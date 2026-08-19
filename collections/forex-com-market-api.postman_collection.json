@@ -1,0 +1,233 @@
+{
+  "item": [
+    {
+      "id": "6c99a1e0-beee-4cc3-b141-d7230ea08639",
+      "name": "Market",
+      "description": {
+        "content": "Market search and instrument lookup",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5bde07f4-c048-4d1a-9d56-9ceaaac74e1e",
+          "name": "Search markets with tags",
+          "request": {
+            "name": "Search markets with tags",
+            "description": {
+              "content": "Search for tradeable instruments (forex pairs, CFDs) by name or tag. Returns a list of markets with their MarketId values, which are required for order placement and price subscription requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                "fullsearchwithtags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Market name or tag to search for (e.g. EUR/USD)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb5cedc5-f8ab-43b9-8c9b-01adbe7d6e7b",
+              "name": "Market search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    "fullsearchwithtags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "EUR/USD"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Markets\": [\n    {\n      \"MarketId\": 3362,\n      \"Name\": \"string\",\n      \"WebsiteName\": \"string\",\n      \"Bid\": 798.167844410651,\n      \"Offer\": 6410.979578416356,\n      \"High\": 4491.095067005094,\n      \"Low\": 9608.749404996051,\n      \"Change\": 5428.087938919014,\n      \"PercentChange\": 5084.0414762130695,\n      \"PriceDecimalPlaces\": 1382,\n      \"MarketSizesCurrencyCode\": \"string\",\n      \"ExchangeId\": 4520,\n      \"MarketDecimals\": 279\n    },\n    {\n      \"MarketId\": 4281,\n      \"Name\": \"string\",\n      \"WebsiteName\": \"string\",\n      \"Bid\": 4012.675180107049,\n      \"Offer\": 52.56429188490785,\n      \"High\": 8192.539645720535,\n      \"Low\": 8099.356538762231,\n      \"Change\": 3668.1406365673765,\n      \"PercentChange\": 2468.9984106267048,\n      \"PriceDecimalPlaces\": 2277,\n      \"MarketSizesCurrencyCode\": \"string\",\n      \"ExchangeId\": 8381,\n      \"MarketDecimals\": 3681\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7c031b1-d513-48aa-9736-89392f255639",
+          "name": "Get CFD market information",
+          "request": {
+            "name": "Get CFD market information",
+            "description": {
+              "content": "Retrieve market information for a specific CFD market by name. Returns MarketId and other market details needed for trading operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cfd",
+                "markets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "MarketName",
+                  "value": "<string>",
+                  "description": "(Required) Market name to look up (e.g. USD/CAD)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c055aff9-fa13-410a-917c-188ea40ba305",
+              "name": "Market information retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cfd",
+                    "markets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "MarketName",
+                      "value": "EUR/USD"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Markets\": [\n    {\n      \"MarketId\": 3362,\n      \"Name\": \"string\",\n      \"WebsiteName\": \"string\",\n      \"Bid\": 798.167844410651,\n      \"Offer\": 6410.979578416356,\n      \"High\": 4491.095067005094,\n      \"Low\": 9608.749404996051,\n      \"Change\": 5428.087938919014,\n      \"PercentChange\": 5084.0414762130695,\n      \"PriceDecimalPlaces\": 1382,\n      \"MarketSizesCurrencyCode\": \"string\",\n      \"ExchangeId\": 4520,\n      \"MarketDecimals\": 279\n    },\n    {\n      \"MarketId\": 4281,\n      \"Name\": \"string\",\n      \"WebsiteName\": \"string\",\n      \"Bid\": 4012.675180107049,\n      \"Offer\": 52.56429188490785,\n      \"High\": 8192.539645720535,\n      \"Low\": 8099.356538762231,\n      \"Change\": 3668.1406365673765,\n      \"PercentChange\": 2468.9984106267048,\n      \"PriceDecimalPlaces\": 2277,\n      \"MarketSizesCurrencyCode\": \"string\",\n      \"ExchangeId\": 8381,\n      \"MarketDecimals\": 3681\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ciapi.cityindex.com/TradingAPI",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Session"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "756797b6-be15-4091-88cf-129033f7c07d",
+    "name": "FOREX.com REST Account Market API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.\n\nContact Support:\n Name: FOREX.com API Support\n Email: support.en@forex.com",
+      "type": "text/plain"
+    }
+  }
+}

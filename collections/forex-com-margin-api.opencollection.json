@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOREX.com REST Account Margin API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Session",
+      "value": "{{Session}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Margin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get client account margin information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/margin/ClientAccountMargin"
+          },
+          "docs": "Retrieve trading account margin information including cash balance, margin used, and available margin for the authenticated account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOREX.com REST Account Orders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Session",
+      "value": "{{Session}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Place a new market trade order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ciapi.cityindex.com/TradingAPI/order/newtradeorder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place a new market price trade order on the FOREX.com platform. Executes immediately at the current market bid/ask price. Supports configurable direction (buy/sell), quantity, stop-loss, take-profit, and price tolerance for slippage control."
+        },
+        {
+          "info": {
+            "name": "Place a new stop or limit order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ciapi.cityindex.com/TradingAPI/order/newstoplimitorder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place a new stop or limit order that triggers at a specified price. Used for entry orders that execute when the market reaches the TriggerPrice."
+        },
+        {
+          "info": {
+            "name": "List active orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ciapi.cityindex.com/TradingAPI/order/activeorders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of active (pending) orders for the specified trading account."
+        },
+        {
+          "info": {
+            "name": "Cancel an active order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ciapi.cityindex.com/TradingAPI/order/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a pending active order by its OrderId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

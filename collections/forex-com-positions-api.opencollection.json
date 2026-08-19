@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FOREX.com REST Account Positions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Session",
+      "value": "{{Session}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Positions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List open trading positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ciapi.cityindex.com/TradingAPI/order/openpositions",
+            "params": [
+              {
+                "name": "TradingAccountId",
+                "value": "12345678",
+                "type": "query",
+                "description": "Trading account ID to retrieve positions for"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all open trading positions for the specified trading account. Returns position details including unrealised P&L, direction, quantity, and current pricing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

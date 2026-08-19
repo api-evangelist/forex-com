@@ -1,0 +1,148 @@
+{
+  "item": [
+    {
+      "id": "deee87f1-a046-486e-b0f2-23a9147822ee",
+      "name": "Session",
+      "description": {
+        "content": "Authentication and session management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d50d879-0099-49db-bfa5-a6883c56e31a",
+          "name": "Create a session (authenticate)",
+          "request": {
+            "name": "Create a session (authenticate)",
+            "description": {
+              "content": "Authenticate with FOREX.com using username, password, and AppKey. Returns a Session ID used as a header credential for all subsequent requests. The AppKey must be obtained by contacting support.en@forex.com (allow up to 3 business days for activation).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"UserName\": \"<string>\",\n  \"Password\": \"<password>\",\n  \"AppKey\": \"<string>\",\n  \"AppVersion\": \"1\",\n  \"AppComments\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86f20b28-2969-4c16-b864-13e034b48dc2",
+              "name": "Session created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"UserName\": \"myusername\",\n  \"Password\": \"mypassword\",\n  \"AppKey\": \"my-app-key\",\n  \"AppVersion\": \"1\",\n  \"AppComments\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Session\": \"abc123-session-id-xyz\",\n  \"StatusCode\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ciapi.cityindex.com/TradingAPI",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Session"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a4118a7-44c7-4359-aece-6d4d56658da2",
+    "name": "FOREX.com REST Account Session API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.\n\nContact Support:\n Name: FOREX.com API Support\n Email: support.en@forex.com",
+      "type": "text/plain"
+    }
+  }
+}

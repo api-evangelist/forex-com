@@ -1,0 +1,969 @@
+{
+  "item": [
+    {
+      "id": "7db91f48-c787-4030-bc71-2678c33b72e1",
+      "name": "Pricing",
+      "description": {
+        "content": "Real-time tick history and OHLC bar history",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f6654e4-3c45-4ee5-b3a3-edd1281f1779",
+          "name": "Get recent tick price history",
+          "request": {
+            "name": "Get recent tick price history",
+            "description": {
+              "content": "Retrieve recent tick price history for a given market. Returns bid, ask, and mid prices for the most recent ticks. Maximum 4,000 records per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                ":marketId",
+                "tickhistory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "PriceTicks",
+                  "value": "1",
+                  "description": "Number of price ticks to return (max 4000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceType",
+                  "value": "MID",
+                  "description": "Price type to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "marketId",
+                  "description": "(Required) Market ID for the instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd3ed288-b4cb-47c3-9b7a-28257753dce2",
+              "name": "Tick price history retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    ":marketId",
+                    "tickhistory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "PriceTicks",
+                      "value": "100"
+                    },
+                    {
+                      "key": "priceType",
+                      "value": "MID"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "marketId",
+                      "description": "(Required) Market ID for the instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PriceTicks\": [\n    {\n      \"Price\": 1903.8729825181576,\n      \"TickDate\": \"string\"\n    },\n    {\n      \"Price\": 1841.4063052735153,\n      \"TickDate\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17174bdb-bf9b-4ec3-9ebb-1fa854175a50",
+          "name": "Get tick history between two timestamps",
+          "request": {
+            "name": "Get tick history between two timestamps",
+            "description": {
+              "content": "Retrieve tick price history for a market between two UTC timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                ":marketId",
+                "tickhistorybetween"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fromTimeStampUTC",
+                  "value": "<long>",
+                  "description": "(Required) Start timestamp in UTC (Unix epoch milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toTimestampUTC",
+                  "value": "<long>",
+                  "description": "(Required) End timestamp in UTC (Unix epoch milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceType",
+                  "value": "MID",
+                  "description": "Price type to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "marketId",
+                  "description": "(Required) Market ID for the instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d7efddc-eaac-4939-860d-db63bfa1182f",
+              "name": "Tick price history between timestamps",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    ":marketId",
+                    "tickhistorybetween"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromTimeStampUTC",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "toTimestampUTC",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "priceType",
+                      "value": "MID"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "marketId",
+                      "description": "(Required) Market ID for the instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PriceTicks\": [\n    {\n      \"Price\": 2521.798181183119,\n      \"TickDate\": \"string\"\n    },\n    {\n      \"Price\": 69.03099508067112,\n      \"TickDate\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3e9c6eb-4362-44e7-9a3c-a5b8d4acd94c",
+          "name": "Get tick history after a timestamp",
+          "request": {
+            "name": "Get tick history after a timestamp",
+            "description": {
+              "content": "Retrieve a number of tick price records after a given UTC timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                ":marketId",
+                "tickhistoryafter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "(Required) Maximum number of results to return (max 4000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromTimeStampUTC",
+                  "value": "<long>",
+                  "description": "(Required) Start timestamp in UTC (Unix epoch milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceType",
+                  "value": "MID",
+                  "description": "Price type to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "marketId",
+                  "description": "(Required) Market ID for the instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "175fb61d-b307-48bc-945f-c8e5e2469fef",
+              "name": "Tick price history after timestamp",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    ":marketId",
+                    "tickhistoryafter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fromTimeStampUTC",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "priceType",
+                      "value": "MID"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "marketId",
+                      "description": "(Required) Market ID for the instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PriceTicks\": [\n    {\n      \"Price\": 2521.798181183119,\n      \"TickDate\": \"string\"\n    },\n    {\n      \"Price\": 69.03099508067112,\n      \"TickDate\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b153dee8-541d-4405-8ed5-29481f887e3f",
+          "name": "Get tick history before a timestamp",
+          "request": {
+            "name": "Get tick history before a timestamp",
+            "description": {
+              "content": "Retrieve a number of tick price records before a given UTC timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                ":marketId",
+                "tickhistorybefore"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "(Required) Maximum number of results to return (max 4000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toTimeStampUTC",
+                  "value": "<long>",
+                  "description": "(Required) End timestamp in UTC (Unix epoch milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceType",
+                  "value": "MID",
+                  "description": "Price type to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "marketId",
+                  "description": "(Required) Market ID for the instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "634c22fe-629e-4f91-9b5a-1bd10ece7cfe",
+              "name": "Tick price history before timestamp",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    ":marketId",
+                    "tickhistorybefore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "toTimeStampUTC",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "priceType",
+                      "value": "MID"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "marketId",
+                      "description": "(Required) Market ID for the instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PriceTicks\": [\n    {\n      \"Price\": 2521.798181183119,\n      \"TickDate\": \"string\"\n    },\n    {\n      \"Price\": 69.03099508067112,\n      \"TickDate\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2becd8a-3b50-4139-855b-2b3b13b08b19",
+          "name": "Get OHLC bar history",
+          "request": {
+            "name": "Get OHLC bar history",
+            "description": {
+              "content": "Retrieve open, high, low, close (OHLC) price bar history for a market. Supports MINUTE, HOUR, and DAY intervals with configurable span.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                ":marketId",
+                "barhistory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "(Required) Bar interval type"
+                },
+                {
+                  "disabled": false,
+                  "key": "span",
+                  "value": "<integer>",
+                  "description": "(Required) Interval span (e.g. 1 for 1-hour bars, 15 for 15-minute bars)"
+                },
+                {
+                  "disabled": false,
+                  "key": "PriceBars",
+                  "value": "1",
+                  "description": "Number of price bars to return (max 4000)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "marketId",
+                  "description": "(Required) Market ID for the instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9a3c7db-7e37-4488-aacc-7df94ae1bb12",
+              "name": "OHLC bar history retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    ":marketId",
+                    "barhistory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "span",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PriceBars",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "marketId",
+                      "description": "(Required) Market ID for the instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PriceBars\": [\n    {\n      \"BarDate\": \"string\",\n      \"Open\": 9536.152234654439,\n      \"High\": 3174.9068105843294,\n      \"Low\": 2352.687715524894,\n      \"Close\": 726.6195467538361,\n      \"Volume\": 4302.648545390341\n    },\n    {\n      \"BarDate\": \"string\",\n      \"Open\": 1181.1437231428567,\n      \"High\": 5707.396031907441,\n      \"Low\": 3231.7115854483723,\n      \"Close\": 488.39451589132165,\n      \"Volume\": 5684.370402148546\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb45eb18-80ad-4ae4-9833-5936bec958c9",
+          "name": "Get OHLC bar history between two timestamps",
+          "request": {
+            "name": "Get OHLC bar history between two timestamps",
+            "description": {
+              "content": "Retrieve OHLC price bars for a market between two UTC timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                ":marketId",
+                "barhistorybetween"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "(Required) Bar interval type"
+                },
+                {
+                  "disabled": false,
+                  "key": "span",
+                  "value": "<integer>",
+                  "description": "(Required) Interval span"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromTimeStampUTC",
+                  "value": "<long>",
+                  "description": "(Required) Start timestamp in UTC (Unix epoch milliseconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toTimestampUTC",
+                  "value": "<long>",
+                  "description": "(Required) End timestamp in UTC (Unix epoch milliseconds)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "marketId",
+                  "description": "(Required) Market ID for the instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59ff3c2a-0d6a-4cf0-89df-cc00f68e88be",
+              "name": "OHLC bar history between timestamps",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    ":marketId",
+                    "barhistorybetween"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "span",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fromTimeStampUTC",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "toTimestampUTC",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "marketId",
+                      "description": "(Required) Market ID for the instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PriceBars\": [\n    {\n      \"BarDate\": \"string\",\n      \"Open\": 7250.942156754728,\n      \"High\": 8066.197416661963,\n      \"Low\": 346.5720267603367,\n      \"Close\": 8862.86838547574,\n      \"Volume\": 3690.640505573022\n    },\n    {\n      \"BarDate\": \"string\",\n      \"Open\": 7577.300135911186,\n      \"High\": 879.0330216947373,\n      \"Low\": 8386.676692613944,\n      \"Close\": 2298.0954032165578,\n      \"Volume\": 8550.106615830691\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68004b32-5c98-4ae3-8c7b-180902d816ad",
+          "name": "Get OHLC bar history before a timestamp",
+          "request": {
+            "name": "Get OHLC bar history before a timestamp",
+            "description": {
+              "content": "Retrieve a number of OHLC bar records before a given UTC timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "market",
+                ":marketId",
+                "barhistorybefore"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "(Required) Bar interval type"
+                },
+                {
+                  "disabled": false,
+                  "key": "span",
+                  "value": "<integer>",
+                  "description": "(Required) Interval span"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "(Required) Maximum number of results to return (max 4000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "toTimeStampUTC",
+                  "value": "<long>",
+                  "description": "(Required) End timestamp in UTC (Unix epoch milliseconds)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "marketId",
+                  "description": "(Required) Market ID for the instrument"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19b2229c-8640-41bb-882b-773a9b9b018e",
+              "name": "OHLC bar history before timestamp",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "market",
+                    ":marketId",
+                    "barhistorybefore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "span",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "toTimeStampUTC",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "marketId",
+                      "description": "(Required) Market ID for the instrument"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Session",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"PriceBars\": [\n    {\n      \"BarDate\": \"string\",\n      \"Open\": 7250.942156754728,\n      \"High\": 8066.197416661963,\n      \"Low\": 346.5720267603367,\n      \"Close\": 8862.86838547574,\n      \"Volume\": 3690.640505573022\n    },\n    {\n      \"BarDate\": \"string\",\n      \"Open\": 7577.300135911186,\n      \"High\": 879.0330216947373,\n      \"Low\": 8386.676692613944,\n      \"Close\": 2298.0954032165578,\n      \"Volume\": 8550.106615830691\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ciapi.cityindex.com/TradingAPI",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Session"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "08d9c6cd-39f5-43c2-93e7-53a1dd7f919f",
+    "name": "FOREX.com REST Account Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.\n\nContact Support:\n Name: FOREX.com API Support\n Email: support.en@forex.com",
+      "type": "text/plain"
+    }
+  }
+}
