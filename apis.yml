@@ -239,5 +239,5 @@ maintainers:
     email: info@apis.io
   - name: FOREX.com
     url: https://www.forex.com
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 image: https://www.forex.com/favicon.ico
