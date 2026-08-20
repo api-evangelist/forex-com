@@ -18,6 +18,10 @@ apis:
 - aid: forex-com:forex-com-account-api
   name: FOREX.com Account API
   tags:
+  - Account
+  - Forex
+  - Trading
+  tags_raw:
   - Accounts
   - Forex
   - Trading
@@ -60,6 +64,11 @@ apis:
 - aid: forex-com:forex-com-order-api
   name: FOREX.com Order API
   tags:
+  - Order
+  - Forex
+  - Trading
+  - Execution
+  tags_raw:
   - Orders
   - Forex
   - Trading
@@ -111,6 +120,8 @@ apis:
   name: FOREX.com Orders API
   description: Trade order placement and management
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -141,6 +152,14 @@ apis:
     url: openapi/forex-com-session-api-openapi.yml
 name: FOREX.com
 tags:
+  - Forex
+  - FX Trading
+  - CFD Trading
+  - Algorithmic Trading
+  - Financial-Services
+  - Trading APIs
+  - Currency Exchange
+tags_raw:
   - Forex
   - FX Trading
   - CFD Trading
