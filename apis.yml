@@ -170,6 +170,9 @@ tags_raw:
 kind: contract
 access: 3rd-Party
 common:
+  - type: CapabilityMap
+    url: capabilities/forex-com-capability-edges.yml
+    name: FOREX.com Business Capability Map
   - type: AgenticAccess
     url: agentic-access/forex-com-agentic-access.yml
   - type: VulnerabilityDisclosure

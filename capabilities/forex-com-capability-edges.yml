@@ -1,0 +1,34 @@
+slug: forex-com
+provider: FOREX.com
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Orders
+  spec_file: forex-com-orders-api-openapi.yml
+  capability_id: BC-1370.30
+  capability_id_l1: BC-1370
+  capability_name: Trading Order Management
+  confidence: 0.95
+  evidence: POST /order/newtradeorder  Place a new market trade order; POST /order/cancel  Cancel an active
+    order; schemas NewStopLimitOrderRequest, ActiveOrder
+  reason: Operations capture, list and cancel trade/stop/limit orders across forex and CFD markets — plainly
+    trading order management.
+- tag: Positions
+  spec_file: forex-com-positions-api-openapi.yml
+  capability_id: BC-1370.20
+  capability_id_l1: BC-1370
+  capability_name: Trading Position Management
+  confidence: 0.9
+  evidence: GET /order/openpositions  listOpenPositions  List open trading positions; schemas OpenPosition,
+    OpenPositionsResponse
+  reason: Retrieval of open trading positions on a broker trading API maps to trading position management.
