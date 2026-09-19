@@ -112,6 +112,8 @@ apis:
   name: FOREX.com Market API
   description: Market search and instrument lookup
   tags:
+  - Markets
+  tags_raw:
   - Market
   properties:
   - type: OpenAPI
@@ -146,6 +148,8 @@ apis:
   name: FOREX.com Session API
   description: Authentication and session management
   tags:
+  - Sessions
+  tags_raw:
   - Session
   properties:
   - type: OpenAPI
