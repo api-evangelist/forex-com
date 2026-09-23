@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: FOREX.com REST Account Pricing API
+  title: FOREX.com REST Pricing API
   description: The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.
   version: 1.0.0
   contact:
@@ -357,6 +357,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PriceBar'
+    TickHistoryResponse:
+      type: object
+      properties:
+        PriceTicks:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceTick'
+    PriceTick:
+      type: object
+      properties:
+        Price:
+          type: number
+          format: double
+          description: Tick price value
+        TickDate:
+          type: string
+          description: Tick date in /Date(milliseconds)/ format
     PriceBar:
       type: object
       properties:
@@ -383,23 +400,6 @@ components:
           type: number
           format: double
           description: Volume (if available)
-    PriceTick:
-      type: object
-      properties:
-        Price:
-          type: number
-          format: double
-          description: Tick price value
-        TickDate:
-          type: string
-          description: Tick date in /Date(milliseconds)/ format
-    TickHistoryResponse:
-      type: object
-      properties:
-        PriceTicks:
-          type: array
-          items:
-            $ref: '#/components/schemas/PriceTick'
   securitySchemes:
     SessionAuth:
       type: apiKey

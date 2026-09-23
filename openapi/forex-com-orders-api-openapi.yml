@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: FOREX.com REST Account Orders API
+  title: FOREX.com REST Orders API
   description: The FOREX.com REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time and historical price data, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. Authentication uses a session-based header credential obtained from the /session endpoint. A separate FIX API is available for institutional clients.
   version: 1.0.0
   contact:
@@ -126,6 +126,51 @@ paths:
                 $ref: '#/components/schemas/CancelOrderResponse'
 components:
   schemas:
+    ConditionalOrder:
+      type: object
+      properties:
+        TriggerPrice:
+          type: number
+          format: double
+          description: Price at which to trigger the conditional order
+        Direction:
+          type: string
+          enum:
+          - buy
+          - sell
+          description: Direction of the conditional order (opposite of parent order)
+        Quantity:
+          type: number
+          format: double
+          description: Quantity for the conditional order
+    TradeOrderResponse:
+      type: object
+      properties:
+        OrderId:
+          type: integer
+          description: Order ID assigned to the trade
+        StatusReason:
+          type: integer
+          description: Reason code for order status
+        Status:
+          type: integer
+          description: Order status code
+        Price:
+          type: number
+          format: double
+          description: Execution price
+        AuditId:
+          type: string
+          description: Audit ID for the order
+    CancelOrderResponse:
+      type: object
+      properties:
+        OrderId:
+          type: integer
+        StatusReason:
+          type: integer
+        Status:
+          type: integer
     NewStopLimitOrderRequest:
       type: object
       required:
@@ -167,56 +212,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IfDoneOrder'
-    IfDoneOrder:
-      type: object
-      properties:
-        Stop:
-          $ref: '#/components/schemas/ConditionalOrder'
-        Limit:
-          $ref: '#/components/schemas/ConditionalOrder'
-    ActiveOrdersResponse:
-      type: object
-      properties:
-        ActiveOrders:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActiveOrder'
-    ConditionalOrder:
-      type: object
-      properties:
-        TriggerPrice:
-          type: number
-          format: double
-          description: Price at which to trigger the conditional order
-        Direction:
-          type: string
-          enum:
-          - buy
-          - sell
-          description: Direction of the conditional order (opposite of parent order)
-        Quantity:
-          type: number
-          format: double
-          description: Quantity for the conditional order
-    TradeOrderResponse:
-      type: object
-      properties:
-        OrderId:
-          type: integer
-          description: Order ID assigned to the trade
-        StatusReason:
-          type: integer
-          description: Reason code for order status
-        Status:
-          type: integer
-          description: Order status code
-        Price:
-          type: number
-          format: double
-          description: Execution price
-        AuditId:
-          type: string
-          description: Audit ID for the order
     CancelOrderRequest:
       type: object
       required:
@@ -229,6 +224,13 @@ components:
         OrderId:
           type: integer
           description: Order ID to cancel
+    IfDoneOrder:
+      type: object
+      properties:
+        Stop:
+          $ref: '#/components/schemas/ConditionalOrder'
+        Limit:
+          $ref: '#/components/schemas/ConditionalOrder'
     NewTradeOrderRequest:
       type: object
       required:
@@ -271,6 +273,13 @@ components:
           description: Conditional stop-loss and take-profit orders
           items:
             $ref: '#/components/schemas/IfDoneOrder'
+    ActiveOrdersResponse:
+      type: object
+      properties:
+        ActiveOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActiveOrder'
     ActiveOrdersRequest:
       type: object
       required:
@@ -283,15 +292,6 @@ components:
           type: integer
           description: Maximum number of results to return
           default: 100
-    CancelOrderResponse:
-      type: object
-      properties:
-        OrderId:
-          type: integer
-        StatusReason:
-          type: integer
-        Status:
-          type: integer
     ActiveOrder:
       type: object
       properties:

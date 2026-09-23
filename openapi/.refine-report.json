@@ -1,13 +1,7 @@
 {
   "provider": "forex-com",
   "sources": [
-    "forex-com-account-api-openapi.yml",
-    "forex-com-margin-api-openapi.yml",
-    "forex-com-market-api-openapi.yml",
-    "forex-com-orders-api-openapi.yml",
-    "forex-com-positions-api-openapi.yml",
-    "forex-com-pricing-api-openapi.yml",
-    "forex-com-session-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
     "forex-com-account-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "forex-com-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "forex-com-margin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "forex-com-market-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "forex-com-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "forex-com-positions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "forex-com-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "forex-com-session-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
