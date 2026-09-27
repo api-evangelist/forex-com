@@ -67,6 +67,20 @@ paths:
                 $ref: '#/components/schemas/CfdMarketsResponse'
 components:
   schemas:
+    MarketSearchResponse:
+      type: object
+      properties:
+        Markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
+    CfdMarketsResponse:
+      type: object
+      properties:
+        Markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
     Market:
       type: object
       properties:
@@ -108,20 +122,6 @@ components:
           type: integer
         MarketDecimals:
           type: integer
-    MarketSearchResponse:
-      type: object
-      properties:
-        Markets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Market'
-    CfdMarketsResponse:
-      type: object
-      properties:
-        Markets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Market'
   securitySchemes:
     SessionAuth:
       type: apiKey

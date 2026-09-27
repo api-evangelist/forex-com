@@ -53,6 +53,15 @@ paths:
                 StatusCode: 1
 components:
   schemas:
+    SessionResponse:
+      type: object
+      properties:
+        Session:
+          type: string
+          description: Session ID to use as header credential for subsequent requests
+        StatusCode:
+          type: integer
+          description: Status code (1 = success)
     SessionRequest:
       type: object
       required:
@@ -78,15 +87,6 @@ components:
           type: string
           description: Optional application comments
           default: ''
-    SessionResponse:
-      type: object
-      properties:
-        Session:
-          type: string
-          description: Session ID to use as header credential for subsequent requests
-        StatusCode:
-          type: integer
-          description: Status code (1 = success)
   securitySchemes:
     SessionAuth:
       type: apiKey

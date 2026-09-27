@@ -350,13 +350,6 @@ paths:
                 $ref: '#/components/schemas/BarHistoryResponse'
 components:
   schemas:
-    BarHistoryResponse:
-      type: object
-      properties:
-        PriceBars:
-          type: array
-          items:
-            $ref: '#/components/schemas/PriceBar'
     TickHistoryResponse:
       type: object
       properties:
@@ -400,6 +393,13 @@ components:
           type: number
           format: double
           description: Volume (if available)
+    BarHistoryResponse:
+      type: object
+      properties:
+        PriceBars:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceBar'
   securitySchemes:
     SessionAuth:
       type: apiKey
