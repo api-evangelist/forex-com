@@ -37,6 +37,17 @@ paths:
                 $ref: '#/components/schemas/ClientAndTradingAccountResponse'
 components:
   schemas:
+    ClientAndTradingAccountResponse:
+      type: object
+      properties:
+        TradingAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TradingAccount'
+        ClientAccountId:
+          type: integer
+        ClientAccountName:
+          type: string
     TradingAccount:
       type: object
       properties:
@@ -70,17 +81,6 @@ components:
           type: string
           description: Account type (e.g. CFD, Spread)
         TradingAccountStatus:
-          type: string
-    ClientAndTradingAccountResponse:
-      type: object
-      properties:
-        TradingAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/TradingAccount'
-        ClientAccountId:
-          type: integer
-        ClientAccountName:
           type: string
   securitySchemes:
     SessionAuth:

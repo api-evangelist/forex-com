@@ -45,6 +45,13 @@ paths:
                 $ref: '#/components/schemas/OpenPositionsResponse'
 components:
   schemas:
+    OpenPositionsResponse:
+      type: object
+      properties:
+        OpenPositions:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenPosition'
     OpenPosition:
       type: object
       properties:
@@ -87,13 +94,6 @@ components:
           type: integer
         Currency:
           type: string
-    OpenPositionsResponse:
-      type: object
-      properties:
-        OpenPositions:
-          type: array
-          items:
-            $ref: '#/components/schemas/OpenPosition'
   securitySchemes:
     SessionAuth:
       type: apiKey

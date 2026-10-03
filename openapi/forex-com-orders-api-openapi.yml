@@ -126,13 +126,6 @@ paths:
                 $ref: '#/components/schemas/CancelOrderResponse'
 components:
   schemas:
-    IfDoneOrder:
-      type: object
-      properties:
-        Stop:
-          $ref: '#/components/schemas/ConditionalOrder'
-        Limit:
-          $ref: '#/components/schemas/ConditionalOrder'
     CancelOrderRequest:
       type: object
       required:
@@ -145,80 +138,25 @@ components:
         OrderId:
           type: integer
           description: Order ID to cancel
-    CancelOrderResponse:
+    TradeOrderResponse:
       type: object
       properties:
         OrderId:
           type: integer
+          description: Order ID assigned to the trade
         StatusReason:
           type: integer
+          description: Reason code for order status
         Status:
           type: integer
-    NewStopLimitOrderRequest:
-      type: object
-      required:
-      - Direction
-      - MarketId
-      - Quantity
-      - TradingAccountId
-      - OfferPrice
-      - TriggerPrice
-      properties:
-        Direction:
+          description: Order status code
+        Price:
+          type: number
+          format: double
+          description: Execution price
+        AuditId:
           type: string
-          enum:
-          - buy
-          - sell
-          description: Trade direction
-        MarketId:
-          type: integer
-          description: Market ID for the instrument
-        Quantity:
-          type: number
-          format: double
-          description: Trade quantity
-        MarketName:
-          type: string
-          description: Market name
-        TradingAccountId:
-          type: integer
-          description: Trading account ID
-        OfferPrice:
-          type: number
-          format: double
-          description: Offer price
-        TriggerPrice:
-          type: number
-          format: double
-          description: Price at which the stop/limit order triggers
-        IfDone:
-          type: array
-          items:
-            $ref: '#/components/schemas/IfDoneOrder'
-    ActiveOrder:
-      type: object
-      properties:
-        OrderId:
-          type: integer
-        MarketId:
-          type: integer
-        MarketName:
-          type: string
-        Direction:
-          type: string
-          enum:
-          - buy
-          - sell
-        Quantity:
-          type: number
-          format: double
-        TriggerPrice:
-          type: number
-          format: double
-        Status:
-          type: integer
-        StatusReason:
-          type: integer
+          description: Audit ID for the order
     NewTradeOrderRequest:
       type: object
       required:
@@ -261,18 +199,54 @@ components:
           description: Conditional stop-loss and take-profit orders
           items:
             $ref: '#/components/schemas/IfDoneOrder'
-    ActiveOrdersRequest:
+    NewStopLimitOrderRequest:
       type: object
       required:
+      - Direction
+      - MarketId
+      - Quantity
       - TradingAccountId
+      - OfferPrice
+      - TriggerPrice
       properties:
+        Direction:
+          type: string
+          enum:
+          - buy
+          - sell
+          description: Trade direction
+        MarketId:
+          type: integer
+          description: Market ID for the instrument
+        Quantity:
+          type: number
+          format: double
+          description: Trade quantity
+        MarketName:
+          type: string
+          description: Market name
         TradingAccountId:
           type: integer
           description: Trading account ID
-        MaxResults:
-          type: integer
-          description: Maximum number of results to return
-          default: 100
+        OfferPrice:
+          type: number
+          format: double
+          description: Offer price
+        TriggerPrice:
+          type: number
+          format: double
+          description: Price at which the stop/limit order triggers
+        IfDone:
+          type: array
+          items:
+            $ref: '#/components/schemas/IfDoneOrder'
+    ActiveOrdersResponse:
+      type: object
+      properties:
+        ActiveOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActiveOrder'
     ConditionalOrder:
       type: object
       properties:
@@ -290,32 +264,58 @@ components:
           type: number
           format: double
           description: Quantity for the conditional order
-    TradeOrderResponse:
+    ActiveOrder:
       type: object
       properties:
         OrderId:
           type: integer
-          description: Order ID assigned to the trade
-        StatusReason:
+        MarketId:
           type: integer
-          description: Reason code for order status
-        Status:
-          type: integer
-          description: Order status code
-        Price:
+        MarketName:
+          type: string
+        Direction:
+          type: string
+          enum:
+          - buy
+          - sell
+        Quantity:
           type: number
           format: double
-          description: Execution price
-        AuditId:
-          type: string
-          description: Audit ID for the order
-    ActiveOrdersResponse:
+        TriggerPrice:
+          type: number
+          format: double
+        Status:
+          type: integer
+        StatusReason:
+          type: integer
+    ActiveOrdersRequest:
+      type: object
+      required:
+      - TradingAccountId
+      properties:
+        TradingAccountId:
+          type: integer
+          description: Trading account ID
+        MaxResults:
+          type: integer
+          description: Maximum number of results to return
+          default: 100
+    CancelOrderResponse:
       type: object
       properties:
-        ActiveOrders:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActiveOrder'
+        OrderId:
+          type: integer
+        StatusReason:
+          type: integer
+        Status:
+          type: integer
+    IfDoneOrder:
+      type: object
+      properties:
+        Stop:
+          $ref: '#/components/schemas/ConditionalOrder'
+        Limit:
+          $ref: '#/components/schemas/ConditionalOrder'
   securitySchemes:
     SessionAuth:
       type: apiKey
