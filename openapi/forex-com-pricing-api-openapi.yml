@@ -383,13 +383,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PriceTick'
-    BarHistoryResponse:
-      type: object
-      properties:
-        PriceBars:
-          type: array
-          items:
-            $ref: '#/components/schemas/PriceBar'
     PriceTick:
       type: object
       properties:
@@ -400,6 +393,13 @@ components:
         TickDate:
           type: string
           description: Tick date in /Date(milliseconds)/ format
+    BarHistoryResponse:
+      type: object
+      properties:
+        PriceBars:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceBar'
   securitySchemes:
     SessionAuth:
       type: apiKey
