@@ -67,13 +67,6 @@ paths:
                 $ref: '#/components/schemas/CfdMarketsResponse'
 components:
   schemas:
-    CfdMarketsResponse:
-      type: object
-      properties:
-        Markets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Market'
     Market:
       type: object
       properties:
@@ -115,6 +108,13 @@ components:
           type: integer
         MarketDecimals:
           type: integer
+    CfdMarketsResponse:
+      type: object
+      properties:
+        Markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
     MarketSearchResponse:
       type: object
       properties:
