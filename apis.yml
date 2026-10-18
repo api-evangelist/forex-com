@@ -5,7 +5,7 @@ apis:
   name: FOREX.com Order API
   tags:
   - Order
-  - Forex
+  - Foreign Exchange
   - Trading
   - Execution
   tags_raw:
@@ -24,6 +24,10 @@ apis:
   name: FOREX.com Position API
   tags:
   - Positions
+  - Foreign Exchange
+  - Trading
+  tags_raw:
+  - Positions
   - Forex
   - Trading
   properties:
@@ -38,6 +42,10 @@ apis:
     and personal account information. The /useraccount/ClientAndTradingAccount endpoint returns the Trading
     Account ID required for all order and position operations.
   tags:
+  - Account
+  - Foreign Exchange
+  - Trading
+  tags_raw:
   - Account
   - Forex
   - Trading
@@ -65,7 +73,7 @@ apis:
     requests.
   tags:
   - Markets
-  - Forex
+  - Foreign Exchange
   - Currency Pairs
   - Instruments
   tags_raw:
@@ -103,6 +111,12 @@ apis:
     data supports up to 4,000 records per request with configurable date range, count, and price type (ask/bid/mid).
   tags:
   - Pricing
+  - Foreign Exchange
+  - Real-Time Rates
+  - Streaming
+  - Historical Data
+  tags_raw:
+  - Pricing
   - Forex
   - Real-Time Rates
   - Streaming
@@ -121,7 +135,7 @@ apis:
   - Sessions
   - Authentication
   - Session Management
-  - Forex
+  - Foreign Exchange
   - Trading
   tags_raw:
   - Session
@@ -136,13 +150,12 @@ apis:
     type: Documentation
 name: FOREX.com
 tags:
-  - Forex
+  - Foreign Exchange
   - FX Trading
   - CFD Trading
   - Algorithmic Trading
   - Financial Services
   - Trading APIs
-  - Currency Exchange
 tags_raw:
   - Forex
   - FX Trading
