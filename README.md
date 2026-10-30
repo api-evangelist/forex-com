@@ -64,35 +64,140 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-FOREX.com is a regulated forex and CFD trading broker (a brand of StoneX Group) offering REST and FIX APIs for automated trading and real-time market data access. The REST API is hosted at `ciapi.cityindex.com/TradingAPI` and enables algorithmic traders to authenticate sessions, receive live streaming prices via Lightstreamer, execute buy/sell orders across 80+ forex and CFD markets, and programmatically manage account balances, positions, and order history. A FIX API is available for institutional clients requiring lower-latency direct market connectivity with local liquidity sourcing in London, Tokyo, and New York.
+FOREX.com is a regulated forex and CFD trading broker (a brand of StoneX Group) offering REST and FIX APIs for automated trading and market data access. The REST API, hosted at ciapi.cityindex.com/TradingAPI, enables algorithmic traders to authenticate sessions, retrieve real-time streaming prices via Lightstreamer, execute buy/sell orders across 80+ forex and CFD markets, and manage account balances, positions, and order history programmatically. A FIX API is available for institutional clients requiring low-latency direct market connectivity.
 
-## APIs
+**Areas:** Foreign Exchange · FX Trading · CFD Trading · Algorithmic Trading · Financial Services · Trading APIs
 
-- **Session API** — Authenticate and create API sessions using username, password, and AppKey credentials
-- **Account API** — Retrieve client account details, trading account IDs, balance, and margin
-- **Market API** — Search and resolve Market IDs for 80+ tradeable forex and CFD instruments
-- **Pricing API** — Real-time Lightstreamer streaming prices and historical OHLC data (up to 4,000 records per request)
-- **Order API** — Place market orders with direction, quantity, stop-loss, take-profit, and price tolerance
-- **Position API** — List and monitor open trading positions
+## FOREX.com on APIs.io
 
-## Getting Started
+Everything profiled for FOREX.com is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/forex-com/](https://apis.io/providers/forex-com/)** — or go straight to one of the APIs or properties below.
 
-API access requires an active FOREX.com trading account and an AppKey. To obtain an AppKey, contact FOREX.com support at support.en@forex.com — activation typically takes 3 business days.
+### APIs (9)
 
-## Pricing
+- [FOREX.com Order API](https://apis.io/apis/forex-com/forex-com-order-api/) — Place and manage trade orders on the FOREX.com platform against live streaming prices. Supports market price orders with configurable direction (Buy/Sell),…
+- [FOREX.com Position API](https://apis.io/apis/forex-com/forex-com-position-api/) — List and manage open trading positions on the FOREX.com platform. Retrieve active positions including unrealised P&L, direction, quantity, and pricing…
+- [FOREX.com Account API](https://apis.io/apis/forex-com/forex-com-account-api/) — Retrieve client and trading account details including account IDs, balance, available margin, and personal account information. The…
+- [FOREX.com Margin API](https://apis.io/apis/forex-com/forex-com-margin-api/) — Account margin and cash balance
+- [FOREX.com Market API](https://apis.io/apis/forex-com/forex-com-market-api/) — Search and retrieve market details for tradeable instruments across 80+ forex and CFD markets. Supports full market search by name or tag to resolve Market…
+- [FOREX.com Orders API](https://apis.io/apis/forex-com/forex-com-orders-api/) — Trade order placement and management
+- [FOREX.com Positions API](https://apis.io/apis/forex-com/forex-com-positions-api/) — Open position management
+- [FOREX.com Pricing API](https://apis.io/apis/forex-com/forex-com-pricing-api/) — Access real-time and historical price data for forex and CFD markets. Real-time bid/ask/offer prices are delivered via Lightstreamer streaming subscriptions…
+- [FOREX.com Session API](https://apis.io/apis/forex-com/forex-com-session-api/) — Authenticate and manage API sessions for the FOREX.com trading platform. A POST request to the session endpoint with username, password, and AppKey returns…
 
-There is no separate API subscription fee. Trading costs arise through:
+### Published properties
 
-- **Spread-Only Account**: Commission-free; costs embedded in bid/ask spread (avg 1.00 pip EUR/USD)
-- **RAW Pricing Account**: Tight spreads from 0.2 pips on EUR/USD plus $7 USD commission per $100,000 USD notional traded
-- **FIX API (Institutional)**: Pricing negotiated directly with FOREX.com institutional sales
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Minimum deposit: $100 (FOREX.com recommends $2,500 for adequate risk management).
+#### Agentic access (1)
 
-## Links
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Website: https://www.forex.com/
-- API Trading: https://www.forex.com/en/trading-tools/api-trading/
-- Open Account: https://www.forex.com/en-us/trading-accounts/new-trading-account/
-- Support: support.en@forex.com
-- Python SDK: https://github.com/ali-zahedi/forexcom
+- [Forex Com Agentic Access](https://apis.io/agentic-access/forex-com/forex-com-agentic-access/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Apis Context](https://apis.io/jsonld/forex-com/apis/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [FOREX.com REST Account API](https://apis.io/collections/forex-com/open-forex-com-account-api/)
+- [FOREX.com REST Account Margin API](https://apis.io/collections/forex-com/open-forex-com-margin-api/)
+- [FOREX.com REST Account Market API](https://apis.io/collections/forex-com/open-forex-com-market-api/)
+- [FOREX.com REST Account Orders API](https://apis.io/collections/forex-com/open-forex-com-orders-api/)
+- [FOREX.com REST Account Positions API](https://apis.io/collections/forex-com/open-forex-com-positions-api/)
+- [FOREX.com REST Account Pricing API](https://apis.io/collections/forex-com/open-forex-com-pricing-api/)
+- [FOREX.com REST Account Session API](https://apis.io/collections/forex-com/open-forex-com-session-api/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Forex Com Authentication](https://apis.io/security/forex-com/forex-com-authentication/)
+- [Forex Com Domain Security](https://apis.io/security/forex-com/forex-com-domain-security/)
+- [Forex Com Vulnerability Disclosure](https://apis.io/security/forex-com/forex-com-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Forex Com Plans Pricing](https://apis.io/plans/forex-com/forex-com-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Forex Com Rate Limits](https://apis.io/rate-limits/forex-com/forex-com-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Forex Com Finops](https://apis.io/finops/forex-com/forex-com-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.forex.com/)
+- [Documentation](https://www.forex.com/en/trading-tools/api-trading/)
+- [Getting started](https://www.forex.com/en/trading-tools/api-trading/)
+- [Pricing](https://www.forex.com/en-us/trading-accounts/spread-only-account/)
+- [Support](https://www.forex.com/en/help-and-support/)
+- [Terms of service](https://www.forex.com/en-us/help-and-support/pricing-and-fees/)
+
+## API Evangelist rating
+
+**Kin Score 37.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 52.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 47.6 |
+| Access clarity | 42.1 |
+
+**Agent readiness 24.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.6** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/forex-com/](https://apis.io/providers/forex-com/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for FOREX.com: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/forex-com/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
